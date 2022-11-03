@@ -1,3 +1,7 @@
 # ninja log v5
-2	261	6892144073659520	CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj	df3d2c5cada5863
-261	439	6892144075412284	TrabalhoFinalPOO_22.exe	2ea655f1b0882862
+2	276	6892192094050711	CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj	df3d2c5cada5863
+305	494	6892192096194306	TrabalhoFinalPOO_22.exe	2beeeb626ad46903
+7	163	6892168887399601	CMakeFiles/TrabalhoFinalPOO_22.dir/exceptions/InvalidArguments.cpp.obj	228e9bab04fa9996
+9	212	6892159709547555	CMakeFiles/TrabalhoFinalPOO_22.dir/commands/ComandHandler.cpp.obj	7f72349735dcd451
+5	134	6892181549641640	CMakeFiles/TrabalhoFinalPOO_22.dir/simulacao/Simulacao.cpp.obj	3481e21287130c90
+5	305	6892192094351579	CMakeFiles/TrabalhoFinalPOO_22.dir/args/ArgsHandler.cpp.obj	36090e7fc22f4152

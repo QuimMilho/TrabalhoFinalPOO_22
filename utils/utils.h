@@ -1,0 +1,7 @@
+
+#ifndef TRABALHOFINALPOO_22_UTILS_H
+#define TRABALHOFINALPOO_22_UTILS_H
+
+#define EXPLANATION_SPACES "               "
+
+#endif
