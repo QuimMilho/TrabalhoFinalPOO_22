@@ -1,19 +1,9 @@
 # ninja log v5
-2	276	6892192094050711	CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj	df3d2c5cada5863
-314	509	6892194376240194	TrabalhoFinalPOO_22.exe	a2def4fe8e0af9e5
+3	354	6892245443726879	CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj	df3d2c5cada5863
+290	498	6892247000964901	TrabalhoFinalPOO_22.exe	daa56651bc391081
 7	163	6892168887399601	CMakeFiles/TrabalhoFinalPOO_22.dir/exceptions/InvalidArguments.cpp.obj	228e9bab04fa9996
 9	212	6892159709547555	CMakeFiles/TrabalhoFinalPOO_22.dir/commands/ComandHandler.cpp.obj	7f72349735dcd451
-6	143	6892194372625395	CMakeFiles/TrabalhoFinalPOO_22.dir/utils/utils.cpp.obj	50c7a02fce34fcb4
-5	134	6892181549641640	CMakeFiles/TrabalhoFinalPOO_22.dir/simulacao/Simulacao.cpp.obj	3481e21287130c90
-3	314	6892194374328318	CMakeFiles/TrabalhoFinalPOO_22.dir/args/ArgsHandler.cpp.obj	36090e7fc22f4152
-15	202	6892245442194414	CMakeFiles/TrabalhoFinalPOO_22.dir/exceptions/NotANumber.cpp.obj	b76ff3a24b75b53
 22	325	6892245443426871	CMakeFiles/TrabalhoFinalPOO_22.dir/utils/utils.cpp.obj	50c7a02fce34fcb4
-3	354	6892245443726879	CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj	df3d2c5cada5863
-9	378	6892245443946879	CMakeFiles/TrabalhoFinalPOO_22.dir/args/ArgsHandler.cpp.obj	36090e7fc22f4152
-378	599	6892245446126862	TrabalhoFinalPOO_22.exe	daa56651bc391081
-3	308	6892245804196269	CMakeFiles/TrabalhoFinalPOO_22.dir/args/ArgsHandler.cpp.obj	36090e7fc22f4152
-309	524	6892245806316886	TrabalhoFinalPOO_22.exe	daa56651bc391081
-3	297	6892246552731976	CMakeFiles/TrabalhoFinalPOO_22.dir/args/ArgsHandler.cpp.obj	36090e7fc22f4152
-297	495	6892246554669724	TrabalhoFinalPOO_22.exe	daa56651bc391081
+5	134	6892181549641640	CMakeFiles/TrabalhoFinalPOO_22.dir/simulacao/Simulacao.cpp.obj	3481e21287130c90
 3	289	6892246998924456	CMakeFiles/TrabalhoFinalPOO_22.dir/args/ArgsHandler.cpp.obj	36090e7fc22f4152
-290	498	6892247000964901	TrabalhoFinalPOO_22.exe	daa56651bc391081
+15	202	6892245442194414	CMakeFiles/TrabalhoFinalPOO_22.dir/exceptions/NotANumber.cpp.obj	b76ff3a24b75b53
