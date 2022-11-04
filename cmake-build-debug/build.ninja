@@ -85,6 +85,12 @@ build CMakeFiles/TrabalhoFinalPOO_22.dir/utils/utils.cpp.obj: CXX_COMPILER__Trab
   OBJECT_DIR = CMakeFiles\TrabalhoFinalPOO_22.dir
   OBJECT_FILE_DIR = CMakeFiles\TrabalhoFinalPOO_22.dir\utils
 
+build CMakeFiles/TrabalhoFinalPOO_22.dir/exceptions/NotANumber.cpp.obj: CXX_COMPILER__TrabalhoFinalPOO_22_Debug C$:/dev/ISEC/POO/TrabalhoFinalPOO_22/exceptions/NotANumber.cpp || cmake_object_order_depends_target_TrabalhoFinalPOO_22
+  DEP_FILE = CMakeFiles\TrabalhoFinalPOO_22.dir\exceptions\NotANumber.cpp.obj.d
+  FLAGS = -g -std=gnu++1y
+  OBJECT_DIR = CMakeFiles\TrabalhoFinalPOO_22.dir
+  OBJECT_FILE_DIR = CMakeFiles\TrabalhoFinalPOO_22.dir\exceptions
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target TrabalhoFinalPOO_22
@@ -93,7 +99,7 @@ build CMakeFiles/TrabalhoFinalPOO_22.dir/utils/utils.cpp.obj: CXX_COMPILER__Trab
 #############################################
 # Link the executable TrabalhoFinalPOO_22.exe
 
-build TrabalhoFinalPOO_22.exe: CXX_EXECUTABLE_LINKER__TrabalhoFinalPOO_22_Debug CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj CMakeFiles/TrabalhoFinalPOO_22.dir/commands/ComandHandler.cpp.obj CMakeFiles/TrabalhoFinalPOO_22.dir/args/ArgsHandler.cpp.obj CMakeFiles/TrabalhoFinalPOO_22.dir/simulacao/Simulacao.cpp.obj CMakeFiles/TrabalhoFinalPOO_22.dir/exceptions/InvalidArguments.cpp.obj CMakeFiles/TrabalhoFinalPOO_22.dir/utils/utils.cpp.obj
+build TrabalhoFinalPOO_22.exe: CXX_EXECUTABLE_LINKER__TrabalhoFinalPOO_22_Debug CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj CMakeFiles/TrabalhoFinalPOO_22.dir/commands/ComandHandler.cpp.obj CMakeFiles/TrabalhoFinalPOO_22.dir/args/ArgsHandler.cpp.obj CMakeFiles/TrabalhoFinalPOO_22.dir/simulacao/Simulacao.cpp.obj CMakeFiles/TrabalhoFinalPOO_22.dir/exceptions/InvalidArguments.cpp.obj CMakeFiles/TrabalhoFinalPOO_22.dir/utils/utils.cpp.obj CMakeFiles/TrabalhoFinalPOO_22.dir/exceptions/NotANumber.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\TrabalhoFinalPOO_22.dir
