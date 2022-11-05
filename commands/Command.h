@@ -7,7 +7,7 @@ namespace tppoo {
 
     class Command {
     public:
-        virtual void execute(std::string cmd, std::string* args, int nargs);
+        virtual int execute(std::string cmd, std::string* args, int nargs);
     };
 
 }

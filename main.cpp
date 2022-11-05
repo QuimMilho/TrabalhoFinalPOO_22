@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
     }
     tppoo::CommandHandler cmdHandler;
     try {
-        cmdHandler.executeCommand("teste 123245 67 312675   31254d dsagj gdsahdg a    ");
+        cout << cmdHandler.executeCommand("test 123245 67 312675   31254d dsagj gdsahdg a    ") << endl;
     } catch (tppoo::CommandNotFound& e) {
         cout << e.what() << endl;
         return 4;

@@ -29,7 +29,7 @@ namespace tppoo {
         }
     }
 
-    void CommandHandler::executeCommand(std::string cmdText) {
+    int CommandHandler::executeCommand(std::string cmdText) {
         std::stringstream ss(cmdText);
 
         int n = countArgs(cmdText);
@@ -46,7 +46,8 @@ namespace tppoo {
             args[i].assign(temp);
         }
 
-        cmd->execute(cmdName, args, n);
+        int exit = cmd->execute(cmdName, args, n);
+        return exit;
     }
 
 }
