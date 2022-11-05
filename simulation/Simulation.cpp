@@ -56,10 +56,17 @@ namespace tppoo {
     }
 
     void Simulation::tickTimed(int n, int t) {
-        for (int i = 0; i < n; i++) {
-            tick();
-            render();
-            delay(1000 * t);
+        int i = 0;
+        long long startTime = getCurrentTime();
+        long long now, offset = 0;
+        while (i < n) {
+            now = getCurrentTime();
+            if (startTime + offset - now > t * 1000 || i == 0) {
+                tick();
+                render();
+                offset += (t * 1000);
+                i++;
+            }
         }
     }
 
