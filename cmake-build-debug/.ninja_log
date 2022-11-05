@@ -1,6 +1,6 @@
 # ninja log v5
-3	353	6893210032889836	CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj	df3d2c5cada5863
-535	790	6893210037209834	TrabalhoFinalPOO_22.exe	eb8e0caf277bce26
+3	328	6893212825420211	CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj	df3d2c5cada5863
+328	564	6893212827720223	TrabalhoFinalPOO_22.exe	dc6e436d66f94449
 13	186	6893135606237673	CMakeFiles/TrabalhoFinalPOO_22.dir/exceptions/InvalidArguments.cpp.obj	228e9bab04fa9996
 13	448	6892940423764180	CMakeFiles/TrabalhoFinalPOO_22.dir/commands/ComandHandler.cpp.obj	7f72349735dcd451
 33	463	6893202903181687	CMakeFiles/TrabalhoFinalPOO_22.dir/utils/utils.cpp.obj	50c7a02fce34fcb4
@@ -10,15 +10,6 @@
 10	179	6892950352223198	CMakeFiles/TrabalhoFinalPOO_22.dir/exceptions/OutOfRange.cpp.obj	424d3501a57ddc4b
 3	525	6893202903811695	CMakeFiles/TrabalhoFinalPOO_22.dir/arguments/ArgsHandler.cpp.obj	41c254555fa0c14b
 11	165	6893163331677178	CMakeFiles/TrabalhoFinalPOO_22.dir/simulation/Simulation.cpp.obj	ae44b5c1ae5666b2
-21	488	6893202903431707	CMakeFiles/TrabalhoFinalPOO_22.dir/commands/Command.cpp.obj	5bad8eda1234473e
-13	535	6893210034719831	CMakeFiles/TrabalhoFinalPOO_22.dir/commands/CommandHandler.cpp.obj	27fa66138b702f60
-8	330	6893210032669845	CMakeFiles/TrabalhoFinalPOO_22.dir/commands/commandList/Teste.cpp.obj	85eb0970f1ba2c3a
-8	329	6893212383678213	CMakeFiles/TrabalhoFinalPOO_22.dir/commands/Command.cpp.obj	5bad8eda1234473e
-3	350	6893212383888208	CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj	df3d2c5cada5863
-14	527	6893212385668224	CMakeFiles/TrabalhoFinalPOO_22.dir/commands/CommandHandler.cpp.obj	27fa66138b702f60
-527	770	6893212388038214	TrabalhoFinalPOO_22.exe	dc6e436d66f94449
 15	326	6893212683472615	CMakeFiles/TrabalhoFinalPOO_22.dir/commands/Command.cpp.obj	5bad8eda1234473e
-5	359	6893212683822606	CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj	df3d2c5cada5863
-360	593	6893212686112619	TrabalhoFinalPOO_22.exe	dc6e436d66f94449
-3	328	6893212825420211	CMakeFiles/TrabalhoFinalPOO_22.dir/main.cpp.obj	df3d2c5cada5863
-328	564	6893212827720223	TrabalhoFinalPOO_22.exe	dc6e436d66f94449
+14	527	6893212385668224	CMakeFiles/TrabalhoFinalPOO_22.dir/commands/CommandHandler.cpp.obj	27fa66138b702f60
+8	330	6893210032669845	CMakeFiles/TrabalhoFinalPOO_22.dir/commands/commandList/Teste.cpp.obj	85eb0970f1ba2c3a
