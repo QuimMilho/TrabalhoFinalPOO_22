@@ -7,4 +7,24 @@ namespace tppoo {
 
     }
 
+    int Animal::getHunger() {
+        return hunger;
+    }
+
+    int Animal::getWeight() {
+        return weight;
+    }
+
+    int Animal::getPerc() {
+        return perception;
+    }
+
+    void Animal::setHunger(int n) {
+        hunger = n;
+    }
+
+    void Animal::setWeight(int n) {
+        weight = n;
+    }
+
 }
