@@ -1,13 +1,16 @@
 #include <exception>
+#include <string>
 
 #ifndef TRABALHOFINALPOO_22_NOTANUMBER_H
 #define TRABALHOFINALPOO_22_NOTANUMBER_H
 
 namespace tppoo {
 
-    class NotANumber : public std::exception {
+    class NotANumber : std::exception {
     public:
-        char * what();
+        std::string what() {
+            return "Nao e um numero!";
+        }
     };
 
 }

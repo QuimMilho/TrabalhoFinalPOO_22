@@ -3,4 +3,4 @@ project(TrabalhoFinalPOO_22)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(TrabalhoFinalPOO_22 main.cpp commands/ComandHandler.cpp commands/ComandHandler.h args/ArgsHandler.cpp args/ArgsHandler.h simulacao/Simulacao.cpp simulacao/Simulacao.h exceptions/InvalidArguments.cpp exceptions/InvalidArguments.h utils/utils.cpp utils/utils.h exceptions/NotANumber.cpp exceptions/NotANumber.h)
+add_executable(TrabalhoFinalPOO_22 main.cpp exceptions/InvalidArguments.h arguments/ArgsHandler.cpp arguments/ArgsHandler.h utils/utils.h exceptions/NotANumber.h exceptions/OutOfBounds.h utils/utils.cpp simulation/Simulation.cpp simulation/Simulation.h commands/Command.cpp commands/Command.h commands/CommandHandler.cpp commands/CommandHandler.h exceptions/CommandNotFound.h)

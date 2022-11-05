@@ -1,17 +1,18 @@
 #include <exception>
+#include <string>
 
 #ifndef TRABALHOFINALPOO_22_INVALIDARGUMENTS_H
 #define TRABALHOFINALPOO_22_INVALIDARGUMENTS_H
 
-
 namespace tppoo {
 
-    class InvalidArguments : public std::exception {
+    class InvalidArguments : std::exception {
     public:
-        char * what();
+        std::string what() {
+            return "Argumento invalido!";
+        }
     };
 
 }
 
-
-#endif //TRABALHOFINALPOO_22_INVALIDARGUMENTS_H
+#endif
