@@ -44,7 +44,7 @@ namespace tppoo {
 
     }
 
-    void Simulation::render() {
+    void Simulation::render() { // 120x30
 
     }
 
