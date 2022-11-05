@@ -6,6 +6,24 @@ namespace tppoo {
     int Simulation::nc = 0;
     int Simulation::nl = 0;
 
+    Simulation::Simulation() {
+        vars = new std::unordered_map<std::string, int>();
+        entities = new std::vector<Entity *>;
+        loadConfigFile();
+    }
+
+    Simulation::~Simulation() {
+        delete vars;
+        for (Entity *e : *entities) {
+            delete e;
+        }
+        delete entities;
+    }
+
+    void Simulation::loadConfigFile() {
+
+    }
+
     int Simulation::getNL() {
         return nl;
     }
