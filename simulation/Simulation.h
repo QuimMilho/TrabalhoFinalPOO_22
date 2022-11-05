@@ -12,6 +12,11 @@ namespace tppoo {
         static int getNC();
         static void setNL(int nl);
         static void setNC(int nc);
+        void tick();
+        void render();
+        void tickMultiple(int n);
+        void tickTimed(int n, int t);
+        void start();
     };
 
 }
