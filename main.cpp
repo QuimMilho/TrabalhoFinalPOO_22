@@ -5,6 +5,7 @@
 #include "exceptions/OutOfBounds.h"
 #include "commands/CommandHandler.h"
 #include "exceptions/CommandNotFound.h"
+#include "utils/utils.h"
 
 using namespace std;
 
@@ -22,12 +23,8 @@ int main(int argc, char *argv[]) {
         cout << e.what() << endl;
         return 3;
     }
-    tppoo::CommandHandler cmdHandler;
-    try {
-        cout << cmdHandler.executeCommand("test 123245 67 312675   31254d dsagj gdsahdg a    ") << endl;
-    } catch (tppoo::CommandNotFound& e) {
-        cout << e.what() << endl;
-        return 4;
-    }
+    cout << tppoo::getCurrentTime() << endl;
+    tppoo::delay(10000);
+    cout << tppoo::getCurrentTime() << endl;
     return 0;
 }
