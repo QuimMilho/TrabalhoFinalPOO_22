@@ -7,6 +7,8 @@ namespace tppoo {
         dead = false;
     }
 
+    Entity::~Entity() = default;
+
     char Entity::getChar() {
         return representative;
     }

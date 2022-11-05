@@ -20,6 +20,7 @@ namespace tppoo {
         int getX();
         int getY();
         void kill();
+        virtual ~Entity();
     };
 
 }
