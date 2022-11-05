@@ -10,6 +10,8 @@ namespace tppoo {
     bool isNumber(std::string& str);
     int toNumber(std::string& str);
     int countArgs(std::string& str);
+    void delay(int n);
+    long long getCurrentTime();
 
 }
 

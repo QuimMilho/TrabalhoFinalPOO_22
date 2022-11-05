@@ -1,5 +1,6 @@
 #include "utils.h"
 #include "../exceptions/NotANumber.h"
+#include <chrono>
 
 namespace tppoo {
 
@@ -27,6 +28,19 @@ namespace tppoo {
                 a++;
         }
         return a;
+    }
+
+    void delay(int n) {
+        long long initTime = getCurrentTime();
+        long long timeNow, dif;
+        do {
+            timeNow = getCurrentTime();
+            dif = timeNow - initTime;
+        } while (dif < n);
+    }
+
+    long long getCurrentTime() {
+        return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     }
 
 }
