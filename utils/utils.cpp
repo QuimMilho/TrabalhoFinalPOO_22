@@ -54,6 +54,34 @@ namespace tppoo {
         return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     }
 
+    bool isBetween(int n, int a, int b) {
+        if (a > b) {
+            int k = b;
+            b= a;
+            a = k;
+        }
+        if (n <= a || n >= b) return false;
+        return true;
+    }
+
+    bool isBetweenOrEquals(int n, int a, int b) {
+        if (a > b) {
+            int k = b;
+            b = a;
+            a = k;
+        }
+        if (n < a || n > b) return false;
+        return true;
+    }
+
+    bool isBetween(int x, int y, int x1, int y1, int x2, int y2) {
+        return isBetween(x, x1, x2) && isBetween(y, y1, y2);
+    }
+
+    bool isBetweenOrEquals(int x, int y, int x1, int y1, int x2, int y2) {
+        return isBetweenOrEquals(x, x1, x2) && isBetweenOrEquals(y, y1, y2);
+    }
+
     Random::Random() {
         generator = new std::default_random_engine();
     }
@@ -68,7 +96,7 @@ namespace tppoo {
     }
 
     int Random::random(int a, int b) {
-        std::uniform_int_distribution<int> distribution(a, b - 1);
+        std::uniform_int_distribution<int> distribution(a, b);
         return distribution(*generator);
     }
 

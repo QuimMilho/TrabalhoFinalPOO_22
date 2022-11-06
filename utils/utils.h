@@ -13,6 +13,10 @@ namespace tppoo {
     int countArgs(std::string& str);
     void delay(int n);
     long long getCurrentTime();
+    bool isBetween(int n, int a, int b);
+    bool isBetweenOrEquals(int n, int a, int b);
+    bool isBetween(int x, int y, int x1, int y1, int x2, int y2);
+    bool isBetweenOrEquals(int x, int y, int x1, int y1, int x2, int y2);
 
     class Random {
     private:
