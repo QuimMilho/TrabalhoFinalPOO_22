@@ -10,11 +10,13 @@ namespace tppoo {
     Handler::Handler() {
         cmd = new CommandHandler();
         sim = new Simulation();
+        rand = new Random();
     }
 
     Handler::~Handler() {
         delete cmd;
         delete sim;
+        delete rand;
     }
 
     CommandHandler *Handler::getCommandHandler() {
@@ -29,6 +31,14 @@ namespace tppoo {
         if (Handler::running) throw AlreadyRunning();
         Handler::running = true;
         sim->start();
+    }
+
+    int Handler::random(int n) {
+        return rand->random(n);
+    }
+
+    int Handler::random(int a, int b) {
+        return rand->random(a, b);
     }
 
 }
