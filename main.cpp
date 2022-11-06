@@ -6,6 +6,8 @@
 #include "commands/CommandHandler.h"
 #include "exceptions/CommandNotFound.h"
 #include "utils/utils.h"
+#include "handler/Handler.h"
+#include "exceptions/AlreadyRunning.h"
 
 using namespace std;
 
@@ -23,8 +25,13 @@ int main(int argc, char *argv[]) {
         cout << e.what() << endl;
         return 3;
     }
-    cout << tppoo::getCurrentTime() << endl;
-    tppoo::delay(10000);
-    cout << tppoo::getCurrentTime() << endl;
+    tppoo::Handler::instance = new tppoo::Handler();
+    try {
+        tppoo::Handler::instance->start();
+    } catch(tppoo::AlreadyRunning& e) {
+        std::cout << e.what();
+        return 4;
+    }
+    delete tppoo::Handler::instance;
     return 0;
 }
