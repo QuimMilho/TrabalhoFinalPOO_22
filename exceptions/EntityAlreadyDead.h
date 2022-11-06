@@ -7,6 +7,7 @@
 namespace tppoo {
 
     class EntityAlreadyDead : std::exception {
+    public:
         std::string what() {
             return "Essa entidade já morreu!";
         }
