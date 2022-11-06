@@ -5,19 +5,30 @@
 namespace tppoo {
 
     bool isNumber(std::string& str) {
-        for (char c : str) {
-            if (!std::isdigit(c))
+        int i = 0;
+        if (str.at(i) == '-') {
+            i++;
+            if (str.length() == 1) return false;
+        }
+        for (; i < str.length(); i++) {
+            if (!std::isdigit(str.at(i)))
                 return false;
         }
         return true;
     }
 
     int toNumber(std::string& str) {
-        int a = 0;
+        int a = 0, i = 0;
         if (!isNumber(str)) throw NotANumber();
-        for (char c : str) {
-            a = a * 10 + (c - '0');
+        bool neg = false;
+        if (str.at(i) == '-') {
+            i++;
+            neg = true;
         }
+        for (; i < str.length(); i++) {
+            a = a * 10 + (str.at(i) - '0');
+        }
+        if (neg) a = a * -1;
         return a;
     }
 
@@ -41,6 +52,24 @@ namespace tppoo {
 
     long long getCurrentTime() {
         return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+    }
+
+    Random::Random() {
+        generator = new std::default_random_engine();
+    }
+
+    Random::~Random() {
+        delete generator;
+    }
+
+    int Random::random(int n) {
+        std::uniform_int_distribution<int> distribution(0, n - 1);
+        return distribution(*generator);
+    }
+
+    int Random::random(int a, int b) {
+        std::uniform_int_distribution<int> distribution(a, b - 1);
+        return distribution(*generator);
     }
 
 }
