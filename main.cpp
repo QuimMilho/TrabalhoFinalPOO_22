@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     try {
         tppoo::Handler::instance->start();
     } catch(tppoo::AlreadyRunning& e) {
-        std::cout << e.what();
+        cout << e.what() << endl;
         return 4;
     }
     delete tppoo::Handler::instance;
