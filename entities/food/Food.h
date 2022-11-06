@@ -17,6 +17,7 @@ namespace tppoo {
     public:
         int getNut();
         int getTox();
+        bool isFood() override;
     };
 
 }
