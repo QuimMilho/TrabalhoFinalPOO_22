@@ -8,7 +8,7 @@ namespace tppoo {
         void printInfo();
         void postProcessArgs(int argc, char * argv[]);
     public:
-        void processArgs(int argc, char* argv[]);
+        int processArgs(int argc, char* argv[]);
     };
 
 }

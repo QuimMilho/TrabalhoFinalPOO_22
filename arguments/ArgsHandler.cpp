@@ -11,11 +11,13 @@
 
 namespace tppoo {
 
-    void ArgsHandler::processArgs(int argc, char* argv[]) {
+    int ArgsHandler::processArgs(int argc, char* argv[]) {
         if (argc == 1) {
             printInfo();
+            return 1;
         } else {
             postProcessArgs(argc, argv);
+            return 0;
         }
     }
 
