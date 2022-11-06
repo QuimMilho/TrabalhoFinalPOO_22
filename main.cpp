@@ -14,7 +14,8 @@ using namespace std;
 int main(int argc, char *argv[]) {
     try {
         tppoo::ArgsHandler argsHandler;
-        argsHandler.processArgs(argc, argv);
+        int exit = argsHandler.processArgs(argc, argv);
+        if (exit) return 0;
     } catch(tppoo::InvalidArguments& e) {
         cout << e.what() << endl;
         return 1;
@@ -24,14 +25,22 @@ int main(int argc, char *argv[]) {
     } catch(tppoo::OutOfBounds& e) {
         cout << e.what() << endl;
         return 3;
+    } catch(std::exception& e) {
+        cout << e.what() << endl;
+        return -1;
     }
-    tppoo::Handler::instance = new tppoo::Handler();
     try {
+        tppoo::Handler::instance = new tppoo::Handler();
         tppoo::Handler::instance->start();
+        delete tppoo::Handler::instance;
     } catch(tppoo::AlreadyRunning& e) {
         cout << e.what() << endl;
+        delete tppoo::Handler::instance;
         return 4;
+    } catch(std::exception& e) {
+        cout << e.what() << endl;
+        delete tppoo::Handler::instance;
+        return -2;
     }
-    delete tppoo::Handler::instance;
     return 0;
 }
