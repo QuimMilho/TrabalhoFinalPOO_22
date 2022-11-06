@@ -1,5 +1,8 @@
+#include <iostream>
 #include "Simulation.h"
 #include "../utils/utils.h"
+#include "../handler/Handler.h"
+#include "../exceptions/CommandNotFound.h"
 
 namespace tppoo {
 
@@ -71,7 +74,19 @@ namespace tppoo {
     }
 
     void Simulation::start() {
-
+        int exit;
+        CommandHandler * cmdHand = Handler::instance->getCommandHandler();
+        render();
+        do {
+            std::string cmd;
+            std::cout << ">";
+            std::getline(std::cin, cmd);
+            try {
+                exit = cmdHand->executeCommand(cmd);
+            } catch (CommandNotFound& e) {
+                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+            }
+        } while (!exit);
     }
 
 }
