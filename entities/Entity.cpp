@@ -1,5 +1,5 @@
-#include "Entity.h"
-#include "../exceptions/EntityAlreadyDead.h"
+#include "Entity.hpp"
+#include "../exceptions/EntityAlreadyDead.hpp"
 
 namespace tppoo {
 

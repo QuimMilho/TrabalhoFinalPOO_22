@@ -1,4 +1,4 @@
-#include "Lobo.h"
+#include "Lobo.hpp"
 
 namespace tppoo {
 

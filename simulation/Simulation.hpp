@@ -1,7 +1,7 @@
-#ifndef TRABALHOFINALPOO_22_SIMULATION_H
-#define TRABALHOFINALPOO_22_SIMULATION_H
+#ifndef TRABALHOFINALPOO_22_SIMULATION_HPP
+#define TRABALHOFINALPOO_22_SIMULATION_HPP
 
-#include "../entities/Entity.h"
+#include "../entities/Entity.hpp"
 
 #include <unordered_map>
 #include <vector>

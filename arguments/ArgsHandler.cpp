@@ -1,9 +1,9 @@
-#include "../utils/utils.h"
-#include "ArgsHandler.h"
-#include "../exceptions/InvalidArguments.h"
-#include "../exceptions/NotANumber.h"
-#include "../exceptions/OutOfBounds.h"
-#include "../simulation/Simulation.h"
+#include "../utils/utils.hpp"
+#include "ArgsHandler.hpp"
+#include "../exceptions/InvalidArguments.hpp"
+#include "../exceptions/NotANumber.hpp"
+#include "../exceptions/OutOfBounds.hpp"
+#include "../simulation/Simulation.hpp"
 
 #include <iostream>
 #include <string>

@@ -1,5 +1,5 @@
-#ifndef TRABALHOFINALPOO_22_UTILS_H
-#define TRABALHOFINALPOO_22_UTILS_H
+#ifndef TRABALHOFINALPOO_22_UTILS_HPP
+#define TRABALHOFINALPOO_22_UTILS_HPP
 
 #include <string>
 #include <random>

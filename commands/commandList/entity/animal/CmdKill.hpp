@@ -1,7 +1,7 @@
-#ifndef TRABALHOFINALPOO_22_CMDKILL_H
-#define TRABALHOFINALPOO_22_CMDKILL_H
+#ifndef TRABALHOFINALPOO_22_CMDKILL_HPP
+#define TRABALHOFINALPOO_22_CMDKILL_HPP
 
-#include "../../../Command.h"
+#include "../../../Command.hpp"
 
 namespace tppoo {
 

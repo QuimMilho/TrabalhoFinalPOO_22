@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Handler.h"
-#include "../exceptions/AlreadyRunning.h"
+#include "Handler.hpp"
+#include "../exceptions/AlreadyRunning.hpp"
 
 namespace tppoo {
 

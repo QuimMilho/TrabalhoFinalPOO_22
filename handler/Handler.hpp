@@ -1,9 +1,9 @@
-#ifndef TRABALHOFINALPOO_22_HANDLER_H
-#define TRABALHOFINALPOO_22_HANDLER_H
+#ifndef TRABALHOFINALPOO_22_HANDLER_HPP
+#define TRABALHOFINALPOO_22_HANDLER_HPP
 
-#include "../commands/CommandHandler.h"
-#include "../simulation/Simulation.h"
-#include "../utils/utils.h"
+#include "../commands/CommandHandler.hpp"
+#include "../simulation/Simulation.hpp"
+#include "../utils/utils.hpp"
 
 namespace tppoo {
 

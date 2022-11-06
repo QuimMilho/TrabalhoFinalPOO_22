@@ -1,13 +1,13 @@
 #include <iostream>
-#include "exceptions/InvalidArguments.h"
-#include "arguments/ArgsHandler.h"
-#include "exceptions/NotANumber.h"
-#include "exceptions/OutOfBounds.h"
-#include "commands/CommandHandler.h"
-#include "exceptions/CommandNotFound.h"
-#include "utils/utils.h"
-#include "handler/Handler.h"
-#include "exceptions/AlreadyRunning.h"
+#include "exceptions/InvalidArguments.hpp"
+#include "arguments/ArgsHandler.hpp"
+#include "exceptions/NotANumber.hpp"
+#include "exceptions/OutOfBounds.hpp"
+#include "commands/CommandHandler.hpp"
+#include "exceptions/CommandNotFound.hpp"
+#include "utils/utils.hpp"
+#include "handler/Handler.hpp"
+#include "exceptions/AlreadyRunning.hpp"
 
 using namespace std;
 

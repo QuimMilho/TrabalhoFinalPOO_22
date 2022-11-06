@@ -1,8 +1,8 @@
-#ifndef TRABALHOFINALPOO_22_ANIMAL_H
-#define TRABALHOFINALPOO_22_ANIMAL_H
+#ifndef TRABALHOFINALPOO_22_ANIMAL_HPP
+#define TRABALHOFINALPOO_22_ANIMAL_HPP
 
 #include <string>
-#include "../Entity.h"
+#include "../Entity.hpp"
 
 namespace tppoo {
 

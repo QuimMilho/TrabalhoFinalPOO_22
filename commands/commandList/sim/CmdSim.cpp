@@ -1,10 +1,10 @@
-#include "CmdExit.h"
-#include "CmdN.h"
-#include "../../../handler/Handler.h"
-#include "../../../exceptions/OutOfBounds.h"
-#include "../../../exceptions/InvalidArguments.h"
-#include "CmdSlide.h"
-#include "../../../exceptions/NotANumber.h"
+#include "CmdExit.hpp"
+#include "CmdN.hpp"
+#include "../../../handler/Handler.hpp"
+#include "../../../exceptions/OutOfBounds.hpp"
+#include "../../../exceptions/InvalidArguments.hpp"
+#include "CmdSlide.hpp"
+#include "../../../exceptions/NotANumber.hpp"
 
 namespace tppoo {
 

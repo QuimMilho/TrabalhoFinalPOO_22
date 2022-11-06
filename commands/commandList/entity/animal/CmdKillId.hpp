@@ -1,7 +1,7 @@
-#ifndef TRABALHOFINALPOO_22_CMDKILLID_H
-#define TRABALHOFINALPOO_22_CMDKILLID_H
+#ifndef TRABALHOFINALPOO_22_CMDKILLID_HPP
+#define TRABALHOFINALPOO_22_CMDKILLID_HPP
 
-#include "../../../Command.h"
+#include "../../../Command.hpp"
 
 namespace tppoo {
 

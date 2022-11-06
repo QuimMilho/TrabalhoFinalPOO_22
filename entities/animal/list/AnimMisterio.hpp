@@ -1,7 +1,7 @@
-#ifndef TRABALHOFINALPOO_22_ANIMMISTERIO_H
-#define TRABALHOFINALPOO_22_ANIMMISTERIO_H
+#ifndef TRABALHOFINALPOO_22_ANIMMISTERIO_HPP
+#define TRABALHOFINALPOO_22_ANIMMISTERIO_HPP
 
-#include "../Animal.h"
+#include "../Animal.hpp"
 
 namespace tppoo {
 

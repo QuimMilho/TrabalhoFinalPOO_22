@@ -1,5 +1,5 @@
-#include "utils.h"
-#include "../exceptions/NotANumber.h"
+#include "utils.hpp"
+#include "../exceptions/NotANumber.hpp"
 #include <chrono>
 
 namespace tppoo {

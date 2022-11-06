@@ -1,15 +1,15 @@
 #include <sstream>
 #include <iostream>
-#include "CommandHandler.h"
-#include "../utils/utils.h"
-#include "../exceptions/CommandNotFound.h"
-#include "commandList/sim/CmdExit.h"
-#include "commandList/sim/CmdN.h"
-#include "commandList/entity/animal/CmdAnimal.h"
-#include "commandList/entity/animal/CmdKill.h"
-#include "commandList/entity/animal/CmdKillId.h"
-#include "commandList/entity/animal/CmdAnim.h"
-#include "commandList/sim/CmdSlide.h"
+#include "CommandHandler.hpp"
+#include "../utils/utils.hpp"
+#include "../exceptions/CommandNotFound.hpp"
+#include "commandList/sim/CmdExit.hpp"
+#include "commandList/sim/CmdN.hpp"
+#include "commandList/entity/animal/CmdAnimal.hpp"
+#include "commandList/entity/animal/CmdKill.hpp"
+#include "commandList/entity/animal/CmdKillId.hpp"
+#include "commandList/entity/animal/CmdAnim.hpp"
+#include "commandList/sim/CmdSlide.hpp"
 
 namespace tppoo {
 

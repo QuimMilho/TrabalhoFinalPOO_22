@@ -1,6 +1,6 @@
 
 #include <unordered_map>
-#include "Command.h"
+#include "Command.hpp"
 
 #ifndef TRABALHOFINALPOO_22_COMMANDHANDLER_H
 #define TRABALHOFINALPOO_22_COMMANDHANDLER_H

@@ -1,7 +1,7 @@
-#ifndef TRABALHOFINALPOO_22_CMDANIM_H
-#define TRABALHOFINALPOO_22_CMDANIM_H
+#ifndef TRABALHOFINALPOO_22_CMDANIM_HPP
+#define TRABALHOFINALPOO_22_CMDANIM_HPP
 
-#include "../../../Command.h"
+#include "../../../Command.hpp"
 
 namespace tppoo {
 

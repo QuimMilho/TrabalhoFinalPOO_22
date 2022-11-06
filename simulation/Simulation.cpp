@@ -1,15 +1,15 @@
 #include <iostream>
-#include "Simulation.h"
-#include "../utils/utils.h"
-#include "../handler/Handler.h"
-#include "../exceptions/CommandNotFound.h"
-#include "../exceptions/NotANumber.h"
-#include "../exceptions/InvalidArguments.h"
-#include "../exceptions/FileNotFound.h"
-#include "../exceptions/EntityNotFound.h"
-#include "../exceptions/EntityAlreadyDead.h"
-#include "../exceptions/OutOfBounds.h"
-#include "../exceptions/WrongType.h"
+#include "Simulation.hpp"
+#include "../utils/utils.hpp"
+#include "../handler/Handler.hpp"
+#include "../exceptions/CommandNotFound.hpp"
+#include "../exceptions/NotANumber.hpp"
+#include "../exceptions/InvalidArguments.hpp"
+#include "../exceptions/FileNotFound.hpp"
+#include "../exceptions/EntityNotFound.hpp"
+#include "../exceptions/EntityAlreadyDead.hpp"
+#include "../exceptions/OutOfBounds.hpp"
+#include "../exceptions/WrongType.hpp"
 
 namespace tppoo {
 
