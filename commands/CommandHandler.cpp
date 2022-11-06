@@ -3,6 +3,7 @@
 #include "CommandHandler.h"
 #include "../utils/utils.h"
 #include "../exceptions/CommandNotFound.h"
+#include "commandList/sim/CmdExit.h"
 
 namespace tppoo {
 
@@ -15,13 +16,14 @@ namespace tppoo {
         delete cmds;
     }
 
-    void CommandHandler::registerCmd(std::string name, Command * cmd) {
+    void CommandHandler::registerCmd(const std::string name, Command * cmd) {
         cmds->insert(std::pair<std::string, Command*>(name, cmd));
     }
 
     void CommandHandler::registerCmds() {
         cmds = new std::unordered_map<std::string, Command*>;
         registerCmd("teste", new Command());
+        registerCmd("exit", new CmdExit);
     }
     void CommandHandler::unRegisterCmds() {
         for (std::pair<std::string, Command *> s : *cmds) {
@@ -31,7 +33,6 @@ namespace tppoo {
 
     int CommandHandler::executeCommand(std::string cmdText) {
         std::stringstream ss(cmdText);
-
         int n = countArgs(cmdText);
         std::string cmdName;
         ss >> cmdName;
