@@ -2,10 +2,8 @@
 
 namespace tppoo {
 
-    Animal::Animal(char c, int x, int y, int weight, int hunger, int perception) : Entity(c, x, y),
-            weight(weight), hunger(hunger), perception(perception) {
-
-    }
+    Animal::Animal(char c, int x, int y, int weight, int hunger, int perception, int life) : Entity(c, x, y),
+            weight(weight), hunger(hunger), perception(perception), life(life) {}
 
     int Animal::getHunger() {
         return hunger;
@@ -25,6 +23,18 @@ namespace tppoo {
 
     void Animal::setWeight(int n) {
         weight = n;
+    }
+
+    bool Animal::isAnimal() {
+        return true;
+    }
+
+    void Animal::setLife(int n) {
+        life = n;
+    }
+
+    int Animal::getLife() {
+        return life;
     }
 
 }
