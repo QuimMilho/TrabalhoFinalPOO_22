@@ -4,6 +4,12 @@
 #include "../utils/utils.h"
 #include "../exceptions/CommandNotFound.h"
 #include "commandList/sim/CmdExit.h"
+#include "commandList/sim/CmdN.h"
+#include "commandList/entity/animal/CmdAnimal.h"
+#include "commandList/entity/animal/CmdKill.h"
+#include "commandList/entity/animal/CmdKillId.h"
+#include "commandList/entity/animal/CmdAnim.h"
+#include "commandList/sim/CmdSlide.h"
 
 namespace tppoo {
 
@@ -24,6 +30,12 @@ namespace tppoo {
         cmds = new std::unordered_map<std::string, Command*>;
         registerCmd("teste", new Command());
         registerCmd("exit", new CmdExit);
+        registerCmd("n", new CmdN());
+        registerCmd("animal", new CmdAnimal());
+        registerCmd("kill", new CmdKill());
+        registerCmd("killid", new CmdKillId());
+        registerCmd("anim", new CmdAnim());
+        registerCmd("slide", new CmdSlide());
     }
     void CommandHandler::unRegisterCmds() {
         for (std::pair<std::string, Command *> s : *cmds) {
