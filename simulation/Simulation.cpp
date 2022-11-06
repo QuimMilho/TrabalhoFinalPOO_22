@@ -3,6 +3,13 @@
 #include "../utils/utils.h"
 #include "../handler/Handler.h"
 #include "../exceptions/CommandNotFound.h"
+#include "../exceptions/NotANumber.h"
+#include "../exceptions/InvalidArguments.h"
+#include "../exceptions/FileNotFound.h"
+#include "../exceptions/EntityNotFound.h"
+#include "../exceptions/EntityAlreadyDead.h"
+#include "../exceptions/OutOfBounds.h"
+#include "../exceptions/WrongType.h"
 
 namespace tppoo {
 
@@ -12,6 +19,8 @@ namespace tppoo {
     Simulation::Simulation() {
         vars = new std::unordered_map<std::string, int>();
         entities = new std::vector<Entity *>;
+        x = 0;
+        y = 0;
         loadConfigFile();
     }
 
@@ -44,7 +53,9 @@ namespace tppoo {
     }
 
     void Simulation::tick() {
-
+        for (Entity * e : *entities) {
+            e->tick();
+        }
     }
 
     void Simulation::render() { // 120x30
@@ -58,19 +69,67 @@ namespace tppoo {
         render();
     }
 
-    void Simulation::tickTimed(int n, int t) {
-        int i = 0;
-        long long startTime = getCurrentTime();
-        long long now, offset = 0;
-        while (i < n) {
-            now = getCurrentTime();
-            if (startTime + offset - now > t * 1000 || i == 0) {
-                tick();
-                render();
-                offset += (t * 1000);
-                i++;
-            }
+    void Simulation::tickMultiple(int n, int t) {
+        for (int i = 0; i < n; i++) {
+            tick();
+            render();
+            delay(t * 1000);
         }
+    }
+
+    int Simulation::getXOffset() {
+        return x;
+    }
+
+    int Simulation::getYOffset() {
+        return y;
+    }
+
+    void Simulation::addOffset(const int x, const int y) {
+        if (nc <= 52 && nl << 18) throw OutOfBounds();
+        if (nc > 52) {
+            int temp = this->x + x;
+            if (temp > nc - 52) {
+                temp = nc - 53;
+            } else if (temp < 0) {
+                temp = 0;
+            }
+            this->x = temp;
+        }
+        if (nl > 18) {
+            int temp = this->y + y;
+            if (temp > nl - 18) {
+                temp = nl - 19;
+            } else if (temp < 0) {
+                temp = 0;
+            }
+            this->y = temp;
+        }
+        std::cout << this->x << " " << this->y << std::endl;
+    }
+
+    void Simulation::addXOffset(const int x) {
+        if (nc > 52) {
+            int temp = this->x + x;
+            if (temp > nc - 52) {
+                temp = nc - 53;
+            } else if (temp < 0) {
+                temp = 0;
+            }
+            this->x = temp;
+        } else throw OutOfBounds();
+    }
+
+    void Simulation::addYOffset(const int y) {
+        if (nl > 18) {
+            int temp = this->y + y;
+            if (temp > nl - 18) {
+                temp = nl - 19;
+            } else if (temp < 0) {
+                temp = 0;
+            }
+            this->y = temp;
+        } else throw OutOfBounds();
     }
 
     void Simulation::start() {
@@ -85,8 +144,42 @@ namespace tppoo {
                 exit = cmdHand->executeCommand(cmd);
             } catch (CommandNotFound& e) {
                 std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+            } catch (NotANumber& e) {
+                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+            } catch (InvalidArguments& e) {
+                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+            } catch (FileNotFound& e) {
+                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+            } catch (EntityNotFound& e) {
+                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+            } catch (EntityAlreadyDead& e) {
+                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+            } catch (OutOfBounds& e) {
+                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+            } catch (WrongType& e) {
+                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+            } catch (std::exception& e) {
+                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
             }
         } while (!exit);
+    }
+
+    void Simulation::summon(tppoo::Entity *ent) {
+        entities->push_back(ent);
+    }
+
+    void Simulation::kill(int i) {
+        if (i < 0 || i >= entities->size()) throw OutOfBounds();
+        entities->at(i)->kill();
+    }
+
+    int Simulation::getNEntities() {
+        return (int) entities->size();
+    }
+
+    Entity *Simulation::getEntity(int n) {
+        if (n < 0 || n >= entities->size()) throw EntityNotFound();
+        return entities->at(n);
     }
 
 }

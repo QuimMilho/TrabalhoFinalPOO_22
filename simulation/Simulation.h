@@ -12,6 +12,7 @@ namespace tppoo {
     private:
         static int nl;
         static int nc;
+        int x, y;
         std::unordered_map<std::string, int> *vars;
         std::vector<Entity *> *entities;
     public:
@@ -24,9 +25,18 @@ namespace tppoo {
         void tick();
         void render();
         void tickMultiple(int n);
-        void tickTimed(int n, int t);
+        void tickMultiple(int n, int t);
         void start();
         void loadConfigFile();
+        void addOffset(int x, int y);
+        void addXOffset(int x);
+        void addYOffset(int y);
+        int getXOffset();
+        int getYOffset();
+        void summon(Entity * ent);
+        void kill(int i);
+        int getNEntities();
+        Entity *getEntity(int n);
     };
 
 }
