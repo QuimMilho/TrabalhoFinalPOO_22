@@ -7,6 +7,7 @@
 namespace tppoo {
 
     class Bife : public Food {
+    public:
         Bife(int x, int y);
         ~Bife();
         int tick() override;
