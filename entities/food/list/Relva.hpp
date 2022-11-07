@@ -6,6 +6,7 @@
 namespace tppoo {
 
     class Relva : public Food {
+    public:
         Relva(int x, int y);
         ~Relva();
         int tick() override;
