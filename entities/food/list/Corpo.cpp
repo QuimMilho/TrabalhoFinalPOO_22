@@ -3,7 +3,8 @@
 
 namespace tppoo {
 
-    Corpo::Corpo(int x, int y, int valorNut) : Food('p', x, y, "carne", valorNut, 0) {}
+    Corpo::Corpo(int x, int y, int valorNut, int valorTox) :
+            Food('p', x, y, "carne", valorNut, valorTox) {}
 
     Corpo::~Corpo() = default;
 

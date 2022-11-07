@@ -7,7 +7,7 @@ namespace tppoo {
 
     class Corpo : public Food {
     public:
-        Corpo(int x, int y, int valorNut);
+        Corpo(int x, int y, int valorNut, int valorTox = 0);
         ~Corpo();
         int tick() override;
         bool isCorpo() override;
