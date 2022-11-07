@@ -1,10 +1,12 @@
 #ifndef TRABALHOFINALPOO_22_CMDVISANIM_HPP
 #define TRABALHOFINALPOO_22_CMDVISANIM_HPP
 
+#include "../../../Command.hpp"
+
 namespace tppoo {
 
-    class CmdVisanim {
-
+    class CmdVisanim : public Command {
+        int execute(std::string cmd, std::string *args, int nargs) override;
     };
 
 }
