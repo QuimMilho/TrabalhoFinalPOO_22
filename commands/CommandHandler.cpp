@@ -10,6 +10,9 @@
 #include "commandList/entity/animal/CmdKillId.hpp"
 #include "commandList/entity/animal/CmdAnim.hpp"
 #include "commandList/sim/CmdSlide.hpp"
+#include "commandList/entity/animal/CmdVisanim.hpp"
+#include "commandList/entity/CmdSee.hpp"
+#include "commandList/entity/CmdInfo.hpp"
 
 namespace tppoo {
 
@@ -36,6 +39,9 @@ namespace tppoo {
         registerCmd("killid", new CmdKillId());
         registerCmd("anim", new CmdAnim());
         registerCmd("slide", new CmdSlide());
+        registerCmd("visanim", new CmdVisanim());
+        registerCmd("see", new CmdSee());
+        registerCmd("info", new CmdInfo());
     }
     void CommandHandler::unRegisterCmds() {
         for (std::pair<std::string, Command *> s : *cmds) {
