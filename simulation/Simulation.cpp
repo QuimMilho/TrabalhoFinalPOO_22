@@ -46,7 +46,10 @@ namespace tppoo {
                 std::stringstream ss(line);
                 ss >> var >> value;
                 std::cout << var << " " << value << std::endl;
-                vars->insert(std::pair<std::string, int>(var, toNumber(value)));
+                if (vars->find(var) == vars->end())
+                    vars->insert(std::pair<std::string, int>(var, toNumber(value)));
+                else
+                    vars->at(var) = toNumber(value);
             } catch (NotANumber& e) {
                 std::cout << e.what();
             } catch (std::exception& e) {
