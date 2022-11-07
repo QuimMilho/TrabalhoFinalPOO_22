@@ -13,10 +13,10 @@ namespace tppoo {
     protected:
         Animal(char c, int x, int y, int weight, int hunger, int perception, int life);
         void setWeight(int n);
-        void setLife(int n);
         int getPerc();
     public:
         int getWeight();
+        void setLife(int n);
         int getHunger();
         int getLife();
         void setHunger(int n);
