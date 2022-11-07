@@ -22,7 +22,7 @@ namespace tppoo {
 
     int CmdAnimal::execute(std::string cmd, std::string *args, int nargs) {
         Handler *handler = Handler::instance;
-        int x, y, k = 1;
+        int x, y, k = 0;
         switch (nargs) {
             case 1:
                 x = handler->random(Simulation::getNC());
@@ -39,7 +39,7 @@ namespace tppoo {
             default:
                 throw InvalidArguments();
         }
-        if (k == 1) {
+        if (k == 0) {
             if (args[0] == "c") {
                 handler->getSimulation()->summon(new Coelho(x, y, handler->random(1, 4)));
             } else if (args[0] == "o") {
