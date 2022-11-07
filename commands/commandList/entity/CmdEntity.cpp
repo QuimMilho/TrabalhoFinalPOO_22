@@ -59,7 +59,7 @@ namespace tppoo {
         if (nargs != 1) throw InvalidArguments();
         int n = toNumber(args[0]);
         Entity * e = Handler::instance->getSimulation()->getEntity(n);
-        if (e->isDead()) throw EntityAlreadyDead();;
+        if (e->isDead()) throw EntityAlreadyDead();
         if (e->isAnimal()) {
             Animal *a = (Animal *) e;
             std::cout << "Id: " << n << ", Especie: ";
