@@ -6,12 +6,11 @@
 namespace tppoo {
 
     class AlimMisterio : public Food {
-
+    public:
         AlimMisterio(int x, int y);
         ~AlimMisterio();
         int tick() override;
         bool isAlimMisterio() override;
-
     };
 
 }
