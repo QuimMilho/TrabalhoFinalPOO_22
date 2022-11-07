@@ -14,6 +14,11 @@
 #include "commandList/entity/CmdSee.hpp"
 #include "commandList/entity/CmdInfo.hpp"
 #include "commandList/cmd/CmdLoad.hpp"
+#include "commandList/entity/food/CmdFood.hpp"
+#include "commandList/entity/CmdEmpty.hpp"
+#include "commandList/entity/food/CmdFeed.hpp"
+#include "commandList/entity/food/CmdFeedId.hpp"
+#include "commandList/entity/food/CmdNoFood.hpp"
 
 namespace tppoo {
 
@@ -44,6 +49,11 @@ namespace tppoo {
         registerCmd("see", new CmdSee());
         registerCmd("info", new CmdInfo());
         registerCmd("load", new CmdLoad());
+        registerCmd("food", new CmdFood());
+        registerCmd("empty", new CmdEmpty());
+        registerCmd("feed", new CmdFeed());
+        registerCmd("feedid", new CmdFeedId());
+        registerCmd("nofood", new CmdNoFood());
     }
     void CommandHandler::unRegisterCmds() {
         for (std::pair<std::string, Command *> s : *cmds) {
