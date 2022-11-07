@@ -48,14 +48,6 @@ namespace tppoo {
         return dead;
     }
 
-    void Entity::setRender(bool render) {
-        this->render = render;
-    }
-
-    bool Entity::toRender() {
-        return render;
-    }
-
     bool Entity::isFood() {
         return false;
     }

@@ -7,12 +7,10 @@ namespace tppoo {
     private:
         char representative;
         int x, y, lifetime;
-        bool dead, render;
+        bool dead;
     protected:
         Entity(char c, int x, int y);
         void addLifetime();
-        void setX(int n);
-        void setY(int n);
     public:
         char getChar();
         virtual int tick() = 0;
@@ -33,9 +31,9 @@ namespace tppoo {
         virtual bool isCorpo();
         virtual bool isBife();
         virtual bool isAlimMisterio();
-        void setRender(bool render);
-        bool toRender();
         virtual ~Entity();
+        void setX(int n);
+        void setY(int n);
     };
 
 }

@@ -38,6 +38,8 @@ namespace tppoo {
         int getNEntities();
         Entity *getEntity(int n);
         int getVar(std::string varName);
+        bool alreadyHasFood(int x, int y);
+        std::vector<Entity *> getEntitiesInside(int x1, int y1, int x2, int y2);
     };
 
 }
