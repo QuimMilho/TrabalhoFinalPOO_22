@@ -7,6 +7,7 @@
 #include "../../../entities/food/Food.hpp"
 #include "CmdInfo.hpp"
 #include "../../../exceptions/EntityAlreadyDead.hpp"
+#include "CmdEmpty.hpp"
 
 namespace tppoo {
 
@@ -96,6 +97,17 @@ namespace tppoo {
                       e->getY() << std::endl;
         }
         return 0;
+    }
+
+    int CmdEmpty::execute(std::string cmd, std::string *args, int nargs) {
+        if (nargs != 2) throw InvalidArguments();
+        int x = toNumber(args[0]);
+        int y = toNumber(args[1]);
+        std::vector<Entity *> v = Handler::instance->getSimulation()->getEntitiesInside(x, y, x, y);
+        for (Entity * e : v) {
+            if (!e->isDead()) e->kill();
+        }
+        return 2;
     }
 
 }
