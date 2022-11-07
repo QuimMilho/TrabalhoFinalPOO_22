@@ -43,17 +43,18 @@ namespace tppoo {
         std::string line, var, value;
         while (std::getline(file, line)) {
             try {
+                var = "";
+                value = "";
                 std::stringstream ss(line);
                 ss >> var >> value;
-                std::cout << var << " " << value << std::endl;
                 if (vars->find(var) == vars->end())
                     vars->insert(std::pair<std::string, int>(var, toNumber(value)));
                 else
                     vars->at(var) = toNumber(value);
             } catch (NotANumber& e) {
-                std::cout << e.what();
+                e.what();
             } catch (std::exception& e) {
-                std::cout << e.what();
+                e.what();
             }
         }
         file.close();
@@ -82,7 +83,10 @@ namespace tppoo {
     }
 
     void Simulation::render() { // 120x30
-        std::cout << "Render" << std::endl;
+        int i;
+        for (i = 0; i < 10; i++) {
+            std::cout << std::endl;
+        }
     }
 
     void Simulation::tickMultiple(int n) {
@@ -113,7 +117,7 @@ namespace tppoo {
         if (nc > 52) {
             int temp = this->x + x;
             if (temp > nc - 52) {
-                temp = nc - 53;
+                temp = nc - 52;
             } else if (temp < 0) {
                 temp = 0;
             }
@@ -122,7 +126,7 @@ namespace tppoo {
         if (nl > 18) {
             int temp = this->y + y;
             if (temp > nl - 18) {
-                temp = nl - 19;
+                temp = nl - 18;
             } else if (temp < 0) {
                 temp = 0;
             }
@@ -135,7 +139,7 @@ namespace tppoo {
         if (nc > 52) {
             int temp = this->x + x;
             if (temp > nc - 52) {
-                temp = nc - 53;
+                temp = nc - 52;
             } else if (temp < 0) {
                 temp = 0;
             }
@@ -147,7 +151,7 @@ namespace tppoo {
         if (nl > 18) {
             int temp = this->y + y;
             if (temp > nl - 18) {
-                temp = nl - 19;
+                temp = nl - 18;
             } else if (temp < 0) {
                 temp = 0;
             }
@@ -184,7 +188,10 @@ namespace tppoo {
             } catch (std::exception& e) {
                 std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
             }
-            if (exit == 2) render();
+            if (exit == 2) {
+                render();
+                exit = 0;
+            }
             if (exit == 3) {
                 render();
                 exit = 1;
@@ -193,6 +200,20 @@ namespace tppoo {
     }
 
     void Simulation::summon(tppoo::Entity *ent) {
+        if (ent->isFood()) {
+            int a = ent->getX(), b = ent->getY();
+            if (alreadyHasFood(a, b)) {
+                if (!alreadyHasFood(a + 1, b)) {
+                    ent->setX(a + 1);
+                } else if (!alreadyHasFood(a, b + 1)) {
+                    ent->setY(b + 1);
+                } else if (!alreadyHasFood(a - 1, b)) {
+                    ent->setX(a - 1);
+                } else if (!alreadyHasFood(a, b - 1)) {
+                    ent->setY(b - 1);
+                } else throw OutOfBounds();
+            }
+        }
         entities->push_back(ent);
     }
 
@@ -213,6 +234,23 @@ namespace tppoo {
     int Simulation::getVar(std::string varName) {
         if (vars->find(varName) == vars->end()) throw VarNotFound();
         return vars->at(varName);
+    }
+
+    bool Simulation::alreadyHasFood(int x, int y) {
+        for (Entity * e : *entities) {
+            if (e->isFood() && e->getY() == y && e->getX() == x)
+                return true;
+        }
+        return false;
+    }
+
+    std::vector<Entity *> Simulation::getEntitiesInside(int x1, int y1, int x2, int y2) {
+        std::vector<Entity *> vector;
+        for (Entity * e: *entities) {
+            if (isBetweenOrEquals(e->getX(), e->getY(), x1, y1, x2, y2) && !e->isDead())
+                vector.push_back(e);
+        }
+        return vector;
     }
 
 }
