@@ -23,7 +23,7 @@ namespace tppoo {
 
     void ArgsHandler::printInfo() {
         std::cout << "Arguments" << std::endl;
-        std::cout << "-N <numero de linhas> <numero de colunas> :" << std::endl;
+        std::cout << "-N <numero de colunas> <numero de linhas> :" << std::endl;
         std::cout << EXPLANATION_SPACES << "Numero de linhas e colunas da simulacao" << std::endl;
         std::cout << "-NL <number> :" << std::endl;
         std::cout << EXPLANATION_SPACES << "Numero de linhas da simulacao." << std::endl;
@@ -45,17 +45,17 @@ namespace tppoo {
             if (temp == "-N") {
                 ss >> temp;
                 i++;
-                int nl = toNumber(temp);
-                if (nl < 16 || nl > 500) throw OutOfBounds();
-                if (Simulation::getNL() != 0) throw InvalidArguments();
-                Simulation::setNL(nl);
-
-                ss >> temp;
-                i++;
                 int nc = toNumber(temp);
                 if (nc < 16 || nc > 500) throw OutOfBounds();
                 if (Simulation::getNC() != 0) throw InvalidArguments();
                 Simulation::setNC(nc);
+
+                ss >> temp;
+                i++;
+                int nl = toNumber(temp);
+                if (nl < 16 || nl > 500) throw OutOfBounds();
+                if (Simulation::getNL() != 0) throw InvalidArguments();
+                Simulation::setNL(nl);
 
             } else if (temp == "-NL") {
                 ss >> temp;
