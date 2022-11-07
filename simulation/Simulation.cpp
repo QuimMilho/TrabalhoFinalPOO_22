@@ -59,7 +59,7 @@ namespace tppoo {
     }
 
     void Simulation::render() { // 120x30
-
+        std::cout << "Render" << std::endl;
     }
 
     void Simulation::tickMultiple(int n) {
@@ -161,7 +161,12 @@ namespace tppoo {
             } catch (std::exception& e) {
                 std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
             }
-        } while (!exit);
+            if (exit == 2) render();
+            if (exit == 3) {
+                render();
+                exit = 1;
+            }
+        } while (exit != 1);
     }
 
     void Simulation::summon(tppoo::Entity *ent) {
