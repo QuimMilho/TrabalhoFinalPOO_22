@@ -13,6 +13,7 @@
 #include "commandList/entity/animal/CmdVisanim.hpp"
 #include "commandList/entity/CmdSee.hpp"
 #include "commandList/entity/CmdInfo.hpp"
+#include "commandList/cmd/CmdLoad.hpp"
 
 namespace tppoo {
 
@@ -42,6 +43,7 @@ namespace tppoo {
         registerCmd("visanim", new CmdVisanim());
         registerCmd("see", new CmdSee());
         registerCmd("info", new CmdInfo());
+        registerCmd("load", new CmdLoad());
     }
     void CommandHandler::unRegisterCmds() {
         for (std::pair<std::string, Command *> s : *cmds) {
