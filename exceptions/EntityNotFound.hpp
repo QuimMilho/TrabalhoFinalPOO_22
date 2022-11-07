@@ -9,7 +9,7 @@ namespace tppoo {
     class EntityNotFound: std::exception {
     public:
         std::string what() {
-            return "Essa entidade não existe!";
+            return "Essa entidade nao existe!";
         }
     };
 
