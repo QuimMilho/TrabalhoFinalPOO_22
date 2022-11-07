@@ -54,7 +54,7 @@ namespace tppoo {
 
     void Simulation::tick() {
         for (Entity * e : *entities) {
-            e->tick();
+            if (!e->isDead()) e->tick();
         }
     }
 
