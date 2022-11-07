@@ -1,5 +1,6 @@
 #include "Entity.hpp"
 #include "../exceptions/EntityAlreadyDead.hpp"
+#include "../simulation/Simulation.hpp"
 
 namespace tppoo {
 
@@ -31,11 +32,11 @@ namespace tppoo {
     }
 
     int Entity::getX() {
-        return x;
+        return x % Simulation::getNC();
     }
 
     int Entity::getY() {
-        return y;
+        return y % Simulation::getNL();
     }
 
     void Entity::kill() {
