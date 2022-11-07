@@ -31,7 +31,8 @@ namespace tppoo {
         std::ifstream file(fileName);
         if (file.fail() || file.bad()) throw FileNotFound();
         int exit = 0, i = 0;
-        while (std::getline(file, line) && exit == 0) {
+        bool render = false;
+        while (std::getline(file, line) && exit != 1) {
             i++;
             try {
                 exit = Handler::instance->getCommandHandler()->executeCommand(line);
@@ -54,8 +55,11 @@ namespace tppoo {
             } catch (std::exception& e) {
                 std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
             }
+            if (exit == 2) render = true;
         }
         file.close();
+        if (exit == 1 && render) return 3;
+        if (render) return 2;
         return exit;
     }
 
