@@ -43,7 +43,7 @@ namespace tppoo {
         int n = toNumber(args[1]);
         if (isNumber(args[0])) {
             Handler::instance->getSimulation()->addOffset(toNumber(args[0]), n);
-            return 0;
+            return 2;
         }
         if (n <= 0) throw OutOfBounds();
         if (args[0] == "up") {
