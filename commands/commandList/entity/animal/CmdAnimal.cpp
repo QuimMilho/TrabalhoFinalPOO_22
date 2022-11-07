@@ -68,7 +68,7 @@ namespace tppoo {
                 } else throw InvalidArguments();
             }
         }
-        return 0;
+        return 2;
     }
 
     int CmdKill::execute(std::string cmd, std::string *args, int nargs) {
@@ -83,7 +83,7 @@ namespace tppoo {
                     e->kill();
             }
         }
-        return 0;
+        return 2;
     }
 
     int CmdKillId::execute(std::string cmd, std::string *args, int nargs) {
@@ -93,7 +93,7 @@ namespace tppoo {
         if (!e->isAnimal()) throw WrongType();
         if (e->isDead()) throw EntityAlreadyDead();
         e->kill();
-        return 0;
+        return 2;
     }
 
     int CmdAnim::execute(std::string cmd, std::string *args, int nargs) {
