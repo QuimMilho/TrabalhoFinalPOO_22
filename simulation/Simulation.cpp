@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Simulation.hpp"
+#include <fstream>
+#include <sstream>
 #include "../utils/utils.hpp"
 #include "../handler/Handler.hpp"
 #include "../exceptions/CommandNotFound.hpp"
@@ -33,7 +35,24 @@ namespace tppoo {
     }
 
     void Simulation::loadConfigFile() {
-
+        std::ifstream file("constantes.txt");
+        if (file.bad() || file.fail()) {
+            return;
+        }
+        std::string line, var, value;
+        while (std::getline(file, line)) {
+            try {
+                std::stringstream ss(line);
+                ss >> var >> value;
+                std::cout << var << " " << value << std::endl;
+                vars->insert(std::pair<std::string, int>(var, toNumber(value)));
+            } catch (NotANumber& e) {
+                std::cout << e.what();
+            } catch (std::exception& e) {
+                std::cout << e.what();
+            }
+        }
+        file.close();
     }
 
     int Simulation::getNL() {
@@ -86,7 +105,7 @@ namespace tppoo {
     }
 
     void Simulation::addOffset(const int x, const int y) {
-        if (nc <= 52 && nl << 18) throw OutOfBounds();
+        if ((nc <= 52 || x == 0) && (nl <= 18 || y == 0)) throw OutOfBounds();
         if (nc > 52) {
             int temp = this->x + x;
             if (temp > nc - 52) {
