@@ -18,11 +18,13 @@ namespace tppoo {
     }
 
     void Animal::setHunger(int n) {
-        hunger = n;
+        if (n < 0) hunger = 0;
+        else hunger = n;
     }
 
     void Animal::setWeight(int n) {
-        weight = n;
+        if (n < 1) weight = 1;
+        else weight = n;
     }
 
     bool Animal::isAnimal() {
@@ -30,7 +32,8 @@ namespace tppoo {
     }
 
     void Animal::setLife(int n) {
-        life = n;
+        if (n <= 0) kill();
+        else life = n;
     }
 
     int Animal::getLife() {
