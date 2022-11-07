@@ -12,6 +12,7 @@
 #include "../exceptions/EntityAlreadyDead.hpp"
 #include "../exceptions/OutOfBounds.hpp"
 #include "../exceptions/WrongType.hpp"
+#include "../exceptions/VarNotFound.hpp"
 
 namespace tppoo {
 
@@ -204,6 +205,11 @@ namespace tppoo {
     Entity *Simulation::getEntity(int n) {
         if (n < 0 || n >= entities->size()) throw EntityNotFound();
         return entities->at(n);
+    }
+
+    int Simulation::getVar(std::string varName) {
+        if (vars->find(varName) == vars->end()) throw VarNotFound();
+        return vars->at(varName);
     }
 
 }

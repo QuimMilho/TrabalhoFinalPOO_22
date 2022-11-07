@@ -37,6 +37,7 @@ namespace tppoo {
         void kill(int i);
         int getNEntities();
         Entity *getEntity(int n);
+        int getVar(std::string varName);
     };
 
 }
