@@ -55,7 +55,7 @@ namespace tppoo {
         } else if (args[0] == "left") {
             Handler::instance->getSimulation()->addXOffset(-n);
         } else throw InvalidArguments();
-        return 0;
+        return 2;
     }
 
 }
