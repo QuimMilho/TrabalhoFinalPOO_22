@@ -9,6 +9,7 @@
 #include "../../../exceptions/EntityAlreadyDead.hpp"
 #include "../../../exceptions/WrongType.hpp"
 #include "../../../exceptions/OutOfBounds.hpp"
+#include "../../../exceptions/SimulationNotFound.hpp"
 #include <fstream>
 #include <string>
 #include <sstream>
@@ -51,6 +52,8 @@ namespace tppoo {
             } catch (OutOfBounds& e) {
                 std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
             } catch (WrongType& e) {
+                std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
+            } catch (SimulationNotFound& e) {
                 std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
             } catch (std::exception& e) {
                 std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
