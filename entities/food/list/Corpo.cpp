@@ -4,7 +4,8 @@
 namespace tppoo {
 
     Corpo::Corpo(int x, int y, int valorNut, int valorTox) :
-            Food('p', x, y, "carne", valorNut, valorTox) {}
+            Food('p', x, y, "carne", valorNut, valorTox),
+            initValorNut(valorNut), initValorTox(valorTox) {}
 
     Corpo::~Corpo() = default;
 
@@ -14,6 +15,14 @@ namespace tppoo {
 
     bool Corpo::isCorpo() {
         return true;
+    }
+
+    int Corpo::getInitValorNut() const {
+        return initValorNut;
+    }
+
+    int Corpo::getInitValorTox() const {
+        return initValorTox;
     }
 
 }
