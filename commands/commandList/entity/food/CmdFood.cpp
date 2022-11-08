@@ -1,4 +1,5 @@
 
+#include <iostream>
 #include "CmdFood.hpp"
 #include "../../../../simulation/Simulation.hpp"
 #include "../../../../handler/Handler.hpp"
@@ -15,6 +16,7 @@
 #include "../../../../exceptions/EntityAlreadyDead.hpp"
 #include "CmdNoFood.hpp"
 #include "../../../../exceptions/WrongType.hpp"
+#include "CmdComida.hpp"
 
 namespace tppoo {
 
@@ -117,6 +119,81 @@ namespace tppoo {
                 if (e->isFood()) {
                     e->kill();
                     return 2;
+                }
+            }
+        } else throw InvalidArguments();
+        return 0;
+    }
+
+    int CmdComida::execute(std::string cmd, std::string *args, int nargs) {
+        if (nargs == 0) {
+            for (int i = 0; i < Handler::instance->getSimulation()->getNEntities(); i++) {
+                Entity * e = Handler::instance->getSimulation()->getEntity(i);
+                if (e->isFood() && !e->isDead()) {
+                    std::cout << "Id: " << i << ", tipo: ";
+                    if (e->isRelva()) {
+                        std::cout << "Relva";
+                    } else if (e->isCenoura()) {
+                        std::cout << "Cenoura";
+                    } else if (e->isCorpo()) {
+                        std::cout << "Corpo";
+                    } else if (e->isBife()) {
+                        std::cout << "Bife";
+                    } else {
+                        std::cout << "Alimento Misterio";
+                    }
+                    std::cout << ", X: " << e->getX() << ", Y: " << e->getY() << std::endl;
+                }
+            }
+        } else if (nargs == 1) {
+            if (args[0] != "r" && args[0] != "t" && args[0] != "b" && args[0] != "a" && args[0] != "c")
+                throw InvalidArguments();
+            for (int i = 0; i < Handler::instance->getSimulation()->getNEntities(); i++) {
+                Entity * e = Handler::instance->getSimulation()->getEntity(i);
+                if (e->isDead()) continue;
+                if (e->isRelva() && args[0] == "r") {
+                    std::cout << "Id: " << i << ", tipo: " << "Relva" << ", X: " << e->getX() << ", Y: "
+                            << e->getY() << std::endl;
+                }
+                if (e->isCenoura() && args[0] == "t") {
+                    std::cout << "Id: " << i << ", tipo: " << "Cenoura" << ", X: " << e->getX() << ", Y: "
+                            << e->getY() << std::endl;
+                }
+                if (e->isCorpo() && args[0] == "c") {
+                    std::cout << "Id: " << i << ", tipo: " << "Corpo" << ", X: " << e->getX() << ", Y: "
+                            << e->getY() << std::endl;
+                }
+                if (e->isBife() && args[0] == "b") {
+                    std::cout << "Id: " << i << ", tipo: " << "Bife" << ", X: " << e->getX() << ", Y: "
+                            << e->getY() << std::endl;
+                }
+                if (e->isAlimMisterio() && args[0] == "a") {
+                    std::cout << "Id: " << i << ", tipo: " << "Alimento Misterio" << ", X: " << e->getX()
+                            << ", Y: " << e->getY() << std::endl;
+                }
+            }
+        } else if (nargs == 4) {
+            int x1 = toNumber(args[0]);
+            int y1 = toNumber(args[1]);
+            int x2 = toNumber(args[2]);
+            int y2 = toNumber(args[3]);
+            std::vector<Entity *> v = Handler::instance->getSimulation()->getEntitiesInside(x1, y1, x2, y2);
+            for (int i = 0; i < Handler::instance->getSimulation()->getNEntities(); i++) {
+                Entity * e = Handler::instance->getSimulation()->getEntity(i);
+                if (e->isFood() && isBetweenOrEquals(e->getX(), e->getY(), x1, y1, x2, y2) && !e->isDead()) {
+                    std::cout << "Id: " << i << ", tipo: ";
+                    if (e->isRelva()) {
+                        std::cout << "Relva";
+                    } else if (e->isCenoura()) {
+                        std::cout << "Cenoura";
+                    } else if (e->isCorpo()) {
+                        std::cout << "Corpo";
+                    } else if (e->isBife()) {
+                        std::cout << "Bife";
+                    } else {
+                        std::cout << "Alimento Misterio";
+                    }
+                    std::cout << ", X: " << e->getX() << ", Y: " << e->getY() << std::endl;
                 }
             }
         } else throw InvalidArguments();

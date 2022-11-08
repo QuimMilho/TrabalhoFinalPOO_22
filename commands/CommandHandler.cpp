@@ -24,6 +24,7 @@
 #include "commandList/sim/CmdDelete.hpp"
 #include "commandList/sim/CmdNew.hpp"
 #include "commandList/sim/CmdRender.hpp"
+#include "commandList/entity/food/CmdComida.hpp"
 
 namespace tppoo {
 
@@ -64,6 +65,7 @@ namespace tppoo {
         registerCmd("delete", new CmdDelete());
         registerCmd("new", new CmdNew());
         registerCmd("render", new CmdRender());
+        registerCmd("comida", new CmdComida());
     }
     void CommandHandler::unRegisterCmds() {
         for (std::pair<std::string, Command *> s : *cmds) {
