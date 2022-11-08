@@ -10,8 +10,8 @@ namespace tppoo {
         bool dead;
     protected:
         Entity(char c, int x, int y);
-        void addLifetime();
     public:
+        void addLifetime();
         char getChar();
         virtual int tick() = 0;
         int getLifetime();
