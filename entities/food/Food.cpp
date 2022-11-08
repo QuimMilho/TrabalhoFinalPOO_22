@@ -16,10 +16,12 @@ namespace tppoo {
     }
 
     void Food::setNut(int n) {
+        if (n < 0) n = 0;
         nut = n;
     }
 
     void Food::setTox(int n) {
+        if (n < 0) n = 0;
         tox = n;
     }
 
