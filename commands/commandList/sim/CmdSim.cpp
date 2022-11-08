@@ -1,3 +1,4 @@
+#include <sstream>
 #include "CmdExit.hpp"
 #include "CmdN.hpp"
 #include "../../../handler/Handler.hpp"
@@ -5,6 +6,10 @@
 #include "../../../exceptions/InvalidArguments.hpp"
 #include "CmdSlide.hpp"
 #include "../../../exceptions/NotANumber.hpp"
+#include "CmdStore.hpp"
+#include "CmdRestore.hpp"
+#include "CmdNew.hpp"
+#include "CmdDelete.hpp"
 
 namespace tppoo {
 
@@ -56,6 +61,53 @@ namespace tppoo {
             Handler::instance->getSimulation()->addXOffset(-n);
         } else throw InvalidArguments();
         return 2;
+    }
+
+    int CmdStore::execute(std::string cmd, std::string *args, int nargs) {
+        if (nargs == 0) throw InvalidArguments();
+        std::string str;
+        std::stringstream ss(str);
+        for (int i = 0; i < nargs; i++) {
+            ss << args[i];
+        }
+        Handler::instance->saveSim(str);
+        return 2;
+    }
+
+    int CmdRestore::execute(std::string cmd, std::string *args, int nargs) {
+        if (nargs == 0) throw InvalidArguments();
+        std::string str;
+        std::stringstream ss(str);
+        for (int i = 0; i < nargs; i++) {
+            ss << args[i];
+        }
+        Handler::instance->setActive(str);
+        return 2;
+    }
+
+    int CmdNew::execute(std::string cmd, std::string *args, int nargs) {
+        if (nargs == 0) {
+            Handler::instance->newSim();
+        } else {
+            std::string str;
+            std::stringstream ss(str);
+            for (int i = 0; i < nargs; i++) {
+                ss << args[i];
+            }
+            Handler::instance->newSim(str);
+        }
+        return 2;
+    }
+
+    int CmdDelete::execute(std::string cmd, std::string *args, int nargs) {
+        if (nargs == 0) throw InvalidArguments();
+        std::string str;
+        std::stringstream ss(str);
+        for (int i = 0; i < nargs; i++) {
+            ss << args[i];
+        }
+        Handler::instance->deleteSim(str);
+        return 0;
     }
 
 }
