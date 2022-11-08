@@ -246,7 +246,7 @@ namespace tppoo {
 
     bool Simulation::alreadyHasFood(int x, int y) {
         for (Entity * e : *entities) {
-            if (e->isFood() && e->getY() == y && e->getX() == x && !e->isDead())
+            if (e->isFood() && e->getY() == y % Simulation::getNL() && e->getX() == x % Simulation::getNC() && !e->isDead())
                 return true;
         }
         return false;

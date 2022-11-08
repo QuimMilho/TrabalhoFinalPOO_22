@@ -4,9 +4,11 @@
 
 namespace tppoo {
 
-    Entity::Entity(char c, int x, int y) : x(x), y(y), representative(c) {
+    Entity::Entity(char c, int x, int y) : x(x % Simulation::getNC()), y(y % Simulation::getNL()), representative(c) {
         lifetime = 0;
         dead = false;
+        if (x < 0) this->x = Simulation::getNC() - abs(x) % Simulation::getNC();
+        if (y < 0) this->y = Simulation::getNL() - abs(y) % Simulation::getNL();
     }
 
     Entity::~Entity() = default;
@@ -20,11 +22,13 @@ namespace tppoo {
     }
 
     void Entity::setX(int n) {
-        x = n;
+        if (n < 0) n = Simulation::getNC() - (abs(n) % Simulation::getNC());
+        x = n % Simulation::getNC();
     }
 
     void Entity::setY(int n) {
-        y = n;
+        if (n < 0) n = Simulation::getNL() - (abs(n) % Simulation::getNL());
+        y = n % Simulation::getNC();
     }
 
     int Entity::getLifetime() {
