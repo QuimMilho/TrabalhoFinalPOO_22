@@ -10,6 +10,7 @@
 #include "CmdRestore.hpp"
 #include "CmdNew.hpp"
 #include "CmdDelete.hpp"
+#include "CmdRender.hpp"
 
 namespace tppoo {
 
@@ -108,6 +109,10 @@ namespace tppoo {
         }
         Handler::instance->deleteSim(str);
         return 0;
+    }
+
+    int CmdRender::execute(std::string cmd, std::string *args, int nargs) {
+        return 2;
     }
 
 }
