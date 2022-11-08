@@ -12,7 +12,6 @@ namespace tppoo {
         std::string smells;
     protected:
         Animal(char c, int x, int y, int weight, int hunger, int perception, int life);
-        void setWeight(int n);
         int getPerc();
     public:
         int getWeight();
@@ -21,6 +20,7 @@ namespace tppoo {
         int getLife();
         void setHunger(int n);
         bool isAnimal() override;
+        void setWeight(int n);
     };
 
 }
