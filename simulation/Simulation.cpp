@@ -13,26 +13,29 @@
 #include "../exceptions/OutOfBounds.hpp"
 #include "../exceptions/WrongType.hpp"
 #include "../exceptions/VarNotFound.hpp"
+#include "../exceptions/SimulationNotFound.hpp"
 
 namespace tppoo {
 
     int Simulation::nc = 0;
     int Simulation::nl = 0;
+    std::unordered_map<std::string, int> *Simulation::vars = new std::unordered_map<std::string, int>();
 
     Simulation::Simulation() {
-        vars = new std::unordered_map<std::string, int>();
         entities = new std::vector<Entity *>;
         x = 0;
         y = 0;
-        loadConfigFile();
     }
 
     Simulation::~Simulation() {
-        delete vars;
         for (Entity *e : *entities) {
             delete e;
         }
         delete entities;
+    }
+
+    void Simulation::deleteVars() {
+        delete vars;
     }
 
     void Simulation::loadConfigFile() {
@@ -157,46 +160,6 @@ namespace tppoo {
             }
             this->y = temp;
         } else throw OutOfBounds();
-    }
-
-    void Simulation::start() {
-        int exit;
-        CommandHandler * cmdHand = Handler::instance->getCommandHandler();
-        render();
-        do {
-            std::string cmd;
-            std::cout << ">";
-            std::getline(std::cin, cmd);
-            try {
-                exit = cmdHand->executeCommand(cmd);
-            } catch (CommandNotFound& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
-            } catch (NotANumber& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
-            } catch (InvalidArguments& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
-            } catch (FileNotFound& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
-            } catch (EntityNotFound& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
-            } catch (EntityAlreadyDead& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
-            } catch (OutOfBounds& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
-            } catch (WrongType& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
-            } catch (std::exception& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
-            }
-            if (exit == 2) {
-                render();
-                exit = 0;
-            }
-            if (exit == 3) {
-                render();
-                exit = 1;
-            }
-        } while (exit != 1);
     }
 
     void Simulation::summon(tppoo::Entity *ent) {

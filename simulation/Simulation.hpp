@@ -12,8 +12,8 @@ namespace tppoo {
     private:
         static int nl;
         static int nc;
+        static std::unordered_map<std::string, int> *vars;
         int x, y;
-        std::unordered_map<std::string, int> *vars;
         std::vector<Entity *> *entities;
     public:
         Simulation();
@@ -26,7 +26,6 @@ namespace tppoo {
         void render();
         void tickMultiple(int n);
         void tickMultiple(int n, int t);
-        void start();
         void loadConfigFile();
         void addOffset(int x, int y);
         void addXOffset(int x);
@@ -40,6 +39,7 @@ namespace tppoo {
         int getVar(std::string varName);
         bool alreadyHasFood(int x, int y);
         std::vector<Entity *> getEntitiesInside(int x1, int y1, int x2, int y2);
+        void deleteVars();
     };
 
 }
