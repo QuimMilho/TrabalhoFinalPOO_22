@@ -100,4 +100,8 @@ namespace tppoo {
         return distribution(*generator);
     }
 
+    void clear() {
+        system("cls");
+    }
+
 }
