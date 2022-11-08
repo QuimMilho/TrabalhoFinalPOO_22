@@ -116,10 +116,9 @@ namespace tppoo {
             for (int h = 0; h < squareX; h++) {
                 bool printed = false;
                 for (Entity * e : v) {
-                    if (e->getX() == h + x && e->getY() == i + y) {
+                    if (e->getX() == h + x && e->getY() == i + y && !printed) {
                         std::cout << e->getChar();
                         printed = true;
-                        continue;
                     }
                 }
                 if (!printed) std::cout << ' ';
@@ -247,7 +246,7 @@ namespace tppoo {
 
     bool Simulation::alreadyHasFood(int x, int y) {
         for (Entity * e : *entities) {
-            if (e->isFood() && e->getY() == y && e->getX() == x)
+            if (e->isFood() && e->getY() == y && e->getX() == x && !e->isDead())
                 return true;
         }
         return false;
