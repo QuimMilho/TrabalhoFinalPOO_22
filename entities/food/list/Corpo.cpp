@@ -10,6 +10,11 @@ namespace tppoo {
     Corpo::~Corpo() = default;
 
     int Corpo::tick() {
+        addLifetime();
+        if (getTox() < 2 * initValorTox) {
+            setTox(getTox() + 1);
+        }
+        setNut(getNut() - 1);
         return 0;
     }
 

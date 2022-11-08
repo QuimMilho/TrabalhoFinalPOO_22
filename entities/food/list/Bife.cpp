@@ -7,6 +7,12 @@ namespace tppoo {
     Bife::~Bife() = default;
 
     int Bife::tick() {
+        addLifetime();
+        if (getLifetime() > 30) {
+            kill();
+            return 1;
+        }
+        setNut(getNut() - 1);
         return 0;
     }
 
