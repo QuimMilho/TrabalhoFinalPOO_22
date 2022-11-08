@@ -12,12 +12,12 @@ namespace tppoo {
         int nut, tox;
     protected:
         Food(char c, int x, int y, std::string smells, int nut, int tox);
-        void setNut(int n);
-        void setTox(int n);
     public:
         int getNut();
         int getTox();
         bool isFood() override;
+        void setNut(int n);
+        void setTox(int n);
     };
 
 }
