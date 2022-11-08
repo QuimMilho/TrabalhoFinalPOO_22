@@ -9,10 +9,12 @@ namespace tppoo {
 
     class Handler {
     private:
+        static bool running;
         CommandHandler *cmd;
         Simulation *sim;
+        std::unordered_map<std::string, Simulation *> *simulations;
         Random *rand;
-        static bool running;
+        std::string active;
     public:
         static Handler* instance;
         Handler();
@@ -22,6 +24,14 @@ namespace tppoo {
         int random(int n);
         int random(int a, int b);
         void start();
+        void setActive(const std::string& name);
+        void saveSim(const std::string& name);
+        void newSim();
+        void newSim(std::string name);
+        void deleteSim(std::string name);
+        void copySim(Simulation *saved);
+        void copySim(Simulation *saved, Simulation *newSim);
+        bool simulationExists(const std::string& name);
     };
 
 }
