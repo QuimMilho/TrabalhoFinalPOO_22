@@ -19,6 +19,10 @@
 #include "commandList/entity/food/CmdFeed.hpp"
 #include "commandList/entity/food/CmdFeedId.hpp"
 #include "commandList/entity/food/CmdNoFood.hpp"
+#include "commandList/sim/CmdStore.hpp"
+#include "commandList/sim/CmdRestore.hpp"
+#include "commandList/sim/CmdDelete.hpp"
+#include "commandList/sim/CmdNew.hpp"
 
 namespace tppoo {
 
@@ -54,6 +58,10 @@ namespace tppoo {
         registerCmd("feed", new CmdFeed());
         registerCmd("feedid", new CmdFeedId());
         registerCmd("nofood", new CmdNoFood());
+        registerCmd("store", new CmdStore());
+        registerCmd("restore", new CmdRestore());
+        registerCmd("delete", new CmdDelete());
+        registerCmd("new", new CmdNew());
     }
     void CommandHandler::unRegisterCmds() {
         for (std::pair<std::string, Command *> s : *cmds) {
