@@ -86,10 +86,56 @@ namespace tppoo {
     }
 
     void Simulation::render() { // 120x30
-        int i;
-        for (i = 0; i < 10; i++) {
-            std::cout << std::endl;
+        clear();
+        std::cout << std::endl << "  " << x << " " << y << std::endl << "  ";
+
+        char borderTop, borderRight, borderLeft, borderBottom;
+        if (y == 0) borderTop = (char) 219;
+        else borderTop = (char) 176;
+        if (y + 18 < Simulation::nl) borderBottom = (char) 176;
+        else borderBottom = (char) 219;
+        if (x == 0) borderLeft = (char) 219;
+        else borderLeft = (char) 176;
+        if (x + 52 < Simulation::nc) borderRight = (char) 176;
+        else borderRight = (char) 219;
+
+        int squareX = 52, squareY = 18;
+        if (Simulation::nc < 52)
+            squareX = Simulation::nc;
+        if (Simulation::nl < 18)
+            squareY = Simulation::nl;
+
+        for (int i = 0; i < squareX + 4; i++) {
+            std::cout << borderTop;
         }
+        std::cout << std::endl << "  ";
+
+        std::vector<Entity *> v = getEntitiesInside(x, y, x + 52, y + 18);
+        for (int i = 0; i < squareY; i++) {
+            std::cout << borderLeft << borderLeft;
+            for (int h = 0; h < squareX; h++) {
+                bool printed = false;
+                for (Entity * e : v) {
+                    if (e->getX() == h + x && e->getY() == i + y) {
+                        std::cout << e->getChar();
+                        printed = true;
+                        continue;
+                    }
+                }
+                if (!printed) std::cout << ' ';
+            }
+            std::cout << borderRight << borderRight << std::endl << "  ";
+        }
+
+        for (int i = 0; i < squareX + 4; i++) {
+            std::cout << borderBottom;
+        }
+        std::cout << std::endl;
+        for (int i = 0; i < squareX + 1; i++) {
+            std::cout << ' ';
+        }
+
+        std::cout << x + squareX - 1 << " " << y + squareY - 1 << std::endl << std::endl;
     }
 
     void Simulation::tickMultiple(int n) {
