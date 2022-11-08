@@ -7,6 +7,7 @@ namespace tppoo {
 
     class Relva : public Food {
         int maxLifetime;
+        bool reproduced;
     public:
         Relva(int x, int y);
         ~Relva();
