@@ -81,7 +81,6 @@ namespace tppoo {
 
     void Simulation::tick() {
         for (int i = 0; i < entities->size(); i++) {
-            std::cout << "ent: " << i;
             Entity * e = entities->at(i);
             if (!e->isDead()) e->tick();
         }
