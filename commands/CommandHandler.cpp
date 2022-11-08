@@ -23,6 +23,7 @@
 #include "commandList/sim/CmdRestore.hpp"
 #include "commandList/sim/CmdDelete.hpp"
 #include "commandList/sim/CmdNew.hpp"
+#include "commandList/sim/CmdRender.hpp"
 
 namespace tppoo {
 
@@ -62,6 +63,7 @@ namespace tppoo {
         registerCmd("restore", new CmdRestore());
         registerCmd("delete", new CmdDelete());
         registerCmd("new", new CmdNew());
+        registerCmd("render", new CmdRender());
     }
     void CommandHandler::unRegisterCmds() {
         for (std::pair<std::string, Command *> s : *cmds) {
