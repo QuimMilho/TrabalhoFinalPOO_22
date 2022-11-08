@@ -80,7 +80,9 @@ namespace tppoo {
     }
 
     void Simulation::tick() {
-        for (Entity * e : *entities) {
+        for (int i = 0; i < entities->size(); i++) {
+            std::cout << "ent: " << i;
+            Entity * e = entities->at(i);
             if (!e->isDead()) e->tick();
         }
     }
@@ -219,7 +221,10 @@ namespace tppoo {
                     ent->setX(a - 1);
                 } else if (!alreadyHasFood(a, b - 1)) {
                     ent->setY(b - 1);
-                } else throw OutOfBounds();
+                } else {
+                    delete ent;
+                    throw OutOfBounds();
+                }
             }
         }
         entities->push_back(ent);
