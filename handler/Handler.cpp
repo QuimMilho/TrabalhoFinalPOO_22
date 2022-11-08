@@ -151,20 +151,22 @@ namespace tppoo {
             newSim->addOffset(saved->getXOffset(), saved->getYOffset());
         for (int i = 0; i < saved->getNEntities(); i++) {
             Entity * e = saved->getEntity(i);
+            Entity * newEnt;
             if (e->isAnimal()) {
                 Animal *a = (Animal *) e;
                 if (e->isAnimMisterio()) {
-                    newSim->summon(new AnimMisterio(e->getX(), e->getY()));
+                    newEnt = new AnimMisterio(e->getX(), e->getY());
                 } else if (e->isCanguru()) {
-                    newSim->summon(new Canguru(e->getX(), e->getY(), nullptr));
+                    newEnt = new Canguru(e->getX(), e->getY(), nullptr);
                 } else if (e->isLobo()) {
-                    newSim->summon(new Lobo(e->getX(), e->getY()));
+                    newEnt = new Lobo(e->getX(), e->getY());
                 } else if (e->isOvelha()) {
-                    newSim->summon(new Ovelha(e->getX(), e->getY(), a->getWeight()));
+                    newEnt = new Ovelha(e->getX(), e->getY(), a->getWeight());
                 } else {
-                    newSim->summon(new Coelho(e->getX(), e->getY(), a->getWeight()));
+                    newEnt = new Coelho(e->getX(), e->getY(), a->getWeight());
                 }
-                Animal * anim = (Animal *) newSim->getEntity(i);
+                newSim->summon(newEnt);
+                Animal * anim = (Animal *) newEnt;
                 anim->setHunger(a->getHunger());
                 anim->setWeight(a->getWeight());
                 anim->setLife(a->getLife());
@@ -174,21 +176,22 @@ namespace tppoo {
                     newSim->summon(new Bife(e->getX(), e->getY()));
                 } else if (e->isCorpo()) {
                     Corpo * c = (Corpo *) e;
-                    newSim->summon(new Corpo(e->getX(), e->getY(), c->getInitValorNut(),
-                                          c->getInitValorTox()));
+                    newEnt = new Corpo(e->getX(), e->getY(), c->getInitValorNut(),
+                                      c->getInitValorTox());
                 } else if (e->isCenoura()) {
-                    newSim->summon(new Cenoura(e->getX(), e->getY()));
+                    newEnt = new Cenoura(e->getX(), e->getY());
                 } else if (e->isRelva()) {
-                    newSim->summon(new Relva(e->getX(), e->getY()));
+                    newEnt = new Relva(e->getX(), e->getY());
                 } else {
-                    newSim->summon(new AlimMisterio(e->getX(), e->getY()));
+                    newEnt = new AlimMisterio(e->getX(), e->getY());
                 }
-                Food * food = (Food *) newSim->getEntity(i);
+                newSim->summon(newEnt);
+                Food * food = (Food *) newEnt;
                 food->setNut(f->getNut());
                 food->setTox(f->getTox());
             }
-            if (e->isDead()) e->kill();
-            for (int h = 0; h < e->getLifetime(); h++) e->addLifetime();
+            if (e->isDead()) newEnt->kill();
+            for (int h = 0; h < e->getLifetime(); h++) newEnt->addLifetime();
         }
     }
 
