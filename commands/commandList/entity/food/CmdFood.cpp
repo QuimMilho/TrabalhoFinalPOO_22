@@ -146,7 +146,7 @@ namespace tppoo {
                 }
             }
         } else if (nargs == 1) {
-            if (args[0] != "r" && args[0] != "t" && args[0] != "b" && args[0] != "a" && args[0] != "c")
+            if (args[0] != "r" && args[0] != "t" && args[0] != "b" && args[0] != "a" && args[0] != "p")
                 throw InvalidArguments();
             for (int i = 0; i < Handler::instance->getSimulation()->getNEntities(); i++) {
                 Entity * e = Handler::instance->getSimulation()->getEntity(i);
@@ -159,7 +159,7 @@ namespace tppoo {
                     std::cout << "Id: " << i << ", tipo: " << "Cenoura" << ", X: " << e->getX() << ", Y: "
                             << e->getY() << std::endl;
                 }
-                if (e->isCorpo() && args[0] == "c") {
+                if (e->isCorpo() && args[0] == "p") {
                     std::cout << "Id: " << i << ", tipo: " << "Corpo" << ", X: " << e->getX() << ", Y: "
                             << e->getY() << std::endl;
                 }
