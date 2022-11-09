@@ -56,21 +56,19 @@ namespace tppoo {
 
     bool isBetween(int n, int a, int b) {
         if (a > b) {
-            int k = b;
-            b= a;
-            a = k;
+            if (n >= a && n <= b) return false;
+        } else {
+            if (n <= a || n >= b) return false;
         }
-        if (n <= a || n >= b) return false;
         return true;
     }
 
     bool isBetweenOrEquals(int n, int a, int b) {
         if (a > b) {
-            int k = b;
-            b = a;
-            a = k;
+            if (n > a && n < b) return false;
+        } else {
+            if (n < a || n > b) return false;
         }
-        if (n < a || n > b) return false;
         return true;
     }
 
