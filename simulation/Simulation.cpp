@@ -111,7 +111,7 @@ namespace tppoo {
         }
         std::cout << std::endl << "  ";
 
-        std::vector<Entity *> v = getEntitiesInside(x, y, x + 52, y + 18);
+        std::vector<Entity *> v = getEntitiesInside(x, y, x + squareX - 1, y + squareY - 1);
         for (int i = 0; i < squareY; i++) {
             std::cout << borderLeft << borderLeft;
             for (int h = 0; h < squareX; h++) {
@@ -258,6 +258,14 @@ namespace tppoo {
 
     std::vector<Entity *> Simulation::getEntitiesInside(int x1, int y1, int x2, int y2) {
         std::vector<Entity *> vector;
+        if (x1 < 0) x1 = Simulation::getNC() - abs(x1) % Simulation::getNC();
+        else x1 = x1 % Simulation::getNC();
+        if (y1 < 0) y1 = Simulation::getNL() - abs(y1) % Simulation::getNL();
+        else y1 = y1 % Simulation::getNL();
+        if (x2 < 0) x2 = Simulation::getNC() - abs(x2) % Simulation::getNC();
+        else x2 = x2 % Simulation::getNC();
+        if (y2 < 0) y2 = Simulation::getNL() - abs(y2) % Simulation::getNL();
+        else y2 = y2 % Simulation::getNL();
         for (Entity * e: *entities) {
             if (isBetweenOrEquals(e->getX(), e->getY(), x1, y1, x2, y2) && !e->isDead())
                 vector.push_back(e);
