@@ -25,7 +25,7 @@ namespace tppoo {
         tox = n;
     }
 
-    bool Food::isFood() {
+    bool Food::isFood() const {
         return true;
     }
 

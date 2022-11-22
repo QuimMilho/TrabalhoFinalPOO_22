@@ -4,6 +4,7 @@
 #include "../commands/CommandHandler.hpp"
 #include "../simulation/Simulation.hpp"
 #include "../utils/utils.hpp"
+#include "../utils/Terminal.h"
 
 namespace tppoo {
 
@@ -15,12 +16,16 @@ namespace tppoo {
         std::unordered_map<std::string, Simulation *> *simulations;
         Random *rand;
         std::string active;
+        term::Terminal term;
+        term::Window simulationWindow;
+        term::Window historyWindow;
+        term::Window commandResponseWindow;
     public:
         static Handler* instance;
         Handler();
         ~Handler();
-        CommandHandler *getCommandHandler();
-        Simulation *getSimulation();
+        CommandHandler *getCommandHandler() const;
+        Simulation *getSimulation() const;
         int random(int n);
         int random(int a, int b);
         void start();

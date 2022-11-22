@@ -18,7 +18,7 @@ namespace tppoo {
         return 0;
     }
 
-    bool Corpo::isCorpo() {
+    bool Corpo::isCorpo() const {
         return true;
     }
 

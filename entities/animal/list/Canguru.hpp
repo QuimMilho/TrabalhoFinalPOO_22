@@ -12,7 +12,7 @@ namespace tppoo {
         Canguru(int x, int y, Canguru * mother);
         ~Canguru() override;
         int tick() override;
-        bool isCanguru() override;
+        bool isCanguru() const override;
     };
 
 }

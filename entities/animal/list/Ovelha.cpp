@@ -19,7 +19,7 @@ namespace tppoo {
         return 0;
     }
 
-    bool Ovelha::isOvelha() {
+    bool Ovelha::isOvelha() const {
         return true;
     }
 

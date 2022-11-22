@@ -10,7 +10,7 @@ namespace tppoo {
         return 0;
     }
 
-    bool AlimMisterio::isAlimMisterio() {
+    bool AlimMisterio::isAlimMisterio() const {
         return true;
     }
 

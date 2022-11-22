@@ -15,7 +15,7 @@ namespace tppoo {
     public:
         int getNut();
         int getTox();
-        bool isFood() override;
+        bool isFood() const override;
         void setNut(int n);
         void setTox(int n);
     };

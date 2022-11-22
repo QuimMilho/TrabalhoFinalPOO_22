@@ -6,11 +6,13 @@
 namespace tppoo {
 
     class Coelho : public Animal {
+    private:
+        int maxLifetime;
     public:
         Coelho(int x, int y, int weight);
         ~Coelho() override;
         int tick() override;
-        bool isCoelho() override;
+        bool isCoelho() const override;
     };
 
 }

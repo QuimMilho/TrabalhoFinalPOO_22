@@ -16,7 +16,7 @@ namespace tppoo {
         return 0;
     }
 
-    bool Bife::isBife() {
+    bool Bife::isBife() const {
         return true;
     }
 

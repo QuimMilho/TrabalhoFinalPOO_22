@@ -12,7 +12,7 @@ namespace tppoo {
         Corpo(int x, int y, int valorNut, int valorTox = 0);
         ~Corpo();
         int tick() override;
-        bool isCorpo() override;
+        bool isCorpo() const override;
         int getInitValorNut() const;
         int getInitValorTox() const;
     };

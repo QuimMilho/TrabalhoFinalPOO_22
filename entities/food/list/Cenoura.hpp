@@ -10,7 +10,7 @@ namespace tppoo {
         Cenoura(int x, int y);
         ~Cenoura() override;
         int tick() override;
-        bool isCenoura() override;
+        bool isCenoura() const override;
     };
 
 }

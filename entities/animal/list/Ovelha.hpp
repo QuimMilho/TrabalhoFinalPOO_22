@@ -10,7 +10,7 @@ namespace tppoo {
         Ovelha(int x, int y, int weight);
         ~Ovelha() override;
         int tick() override;
-        bool isOvelha() override;
+        bool isOvelha() const override;
     };
 
 }

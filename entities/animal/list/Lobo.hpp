@@ -10,7 +10,7 @@ namespace tppoo {
         Lobo(int x, int y);
         ~Lobo() override;
         int tick() override;
-        bool isLobo() override;
+        bool isLobo() const override;
     };
 
 }

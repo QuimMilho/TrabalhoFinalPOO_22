@@ -8,6 +8,7 @@
 #include "utils/utils.hpp"
 #include "handler/Handler.hpp"
 #include "exceptions/AlreadyRunning.hpp"
+#include "utils/curses.h"
 
 using namespace std;
 

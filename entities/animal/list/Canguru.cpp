@@ -20,7 +20,7 @@ namespace tppoo {
         return 0;
     }
 
-    bool Canguru::isCanguru() {
+    bool Canguru::isCanguru() const {
         return true;
     }
 

@@ -11,7 +11,7 @@ namespace tppoo {
         Bife(int x, int y);
         ~Bife();
         int tick() override;
-        bool isBife() override;
+        bool isBife() const override;
     };
 
 }

@@ -12,7 +12,7 @@ namespace tppoo {
         Relva(int x, int y);
         ~Relva();
         int tick() override;
-        bool isRelva() override;
+        bool isRelva() const override;
     };
 
 }

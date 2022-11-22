@@ -27,7 +27,7 @@ namespace tppoo {
         else weight = n;
     }
 
-    bool Animal::isAnimal() {
+    bool Animal::isAnimal() const {
         return true;
     }
 

@@ -13,7 +13,7 @@ namespace tppoo {
 
     Entity::~Entity() = default;
 
-    char Entity::getChar() {
+    char Entity::getChar() const {
         return representative;
     }
 
@@ -31,15 +31,15 @@ namespace tppoo {
         y = n % Simulation::getNC();
     }
 
-    int Entity::getLifetime() {
+    int Entity::getLifetime() const {
         return lifetime;
     }
 
-    int Entity::getX() {
+    int Entity::getX() const {
         return x % Simulation::getNC();
     }
 
-    int Entity::getY() {
+    int Entity::getY() const {
         return y % Simulation::getNL();
     }
 
@@ -48,55 +48,55 @@ namespace tppoo {
         dead = true;
     }
 
-    bool Entity::isDead() {
+    bool Entity::isDead() const {
         return dead;
     }
 
-    bool Entity::isFood() {
+    bool Entity::isFood() const {
         return false;
     }
 
-    bool Entity::isAnimal() {
+    bool Entity::isAnimal() const {
         return false;
     }
 
-    bool Entity::isAlimMisterio() {
+    bool Entity::isAlimMisterio() const {
         return false;
     }
 
-    bool Entity::isAnimMisterio() {
+    bool Entity::isAnimMisterio() const {
         return false;
     }
 
-    bool Entity::isBife() {
+    bool Entity::isBife() const {
         return false;
     }
 
-    bool Entity::isCanguru() {
+    bool Entity::isCanguru() const {
         return false;
     }
 
-    bool Entity::isCenoura() {
+    bool Entity::isCenoura() const {
         return false;
     }
 
-    bool Entity::isCoelho() {
+    bool Entity::isCoelho() const {
         return false;
     }
 
-    bool Entity::isCorpo() {
+    bool Entity::isCorpo() const {
         return false;
     }
 
-    bool Entity::isLobo() {
+    bool Entity::isLobo() const {
         return false;
     }
 
-    bool Entity::isOvelha() {
+    bool Entity::isOvelha() const {
         return false;
     }
 
-    bool Entity::isRelva() {
+    bool Entity::isRelva() const {
         return false;
     }
 

@@ -19,7 +19,7 @@ namespace tppoo {
         return 0;
     }
 
-    bool Lobo::isLobo() {
+    bool Lobo::isLobo() const {
         return true;
     }
 

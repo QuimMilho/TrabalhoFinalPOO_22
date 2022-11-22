@@ -14,7 +14,7 @@ namespace tppoo {
         return 0;
     }
 
-    bool Cenoura::isCenoura() {
+    bool Cenoura::isCenoura() const {
         return true;
     }
 

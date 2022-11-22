@@ -10,7 +10,7 @@ namespace tppoo {
         AlimMisterio(int x, int y);
         ~AlimMisterio();
         int tick() override;
-        bool isAlimMisterio() override;
+        bool isAlimMisterio() const override;
     };
 
 }

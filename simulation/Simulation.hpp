@@ -30,15 +30,15 @@ namespace tppoo {
         void addOffset(int x, int y);
         void addXOffset(int x);
         void addYOffset(int y);
-        int getXOffset();
-        int getYOffset();
+        int getXOffset() const;
+        int getYOffset() const;
         void summon(Entity * ent);
         void kill(int i);
-        int getNEntities();
-        Entity *getEntity(int n);
-        int getVar(std::string varName);
+        int getNEntities() const;
+        Entity *getEntity(int n) const;
+        int getVar(std::string varName) const;
         bool alreadyHasFood(int x, int y);
-        std::vector<Entity *> getEntitiesInside(int x1, int y1, int x2, int y2);
+        std::vector<Entity *> getEntitiesInside(int x1, int y1, int x2, int y2) const;
         void deleteVars();
     };
 

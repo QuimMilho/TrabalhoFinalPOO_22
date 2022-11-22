@@ -19,7 +19,7 @@ namespace tppoo {
         int getHunger();
         int getLife();
         void setHunger(int n);
-        bool isAnimal() override;
+        bool isAnimal() const override;
         void setWeight(int n);
     };
 

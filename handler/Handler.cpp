@@ -45,11 +45,11 @@ namespace tppoo {
         delete sim;
     }
 
-    CommandHandler *Handler::getCommandHandler() {
+    CommandHandler *Handler::getCommandHandler() const {
         return cmd;
     }
 
-    Simulation *Handler::getSimulation() {
+    Simulation *Handler::getSimulation() const {
         return sim;
     }
 

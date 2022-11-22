@@ -153,11 +153,11 @@ namespace tppoo {
         }
     }
 
-    int Simulation::getXOffset() {
+    int Simulation::getXOffset() const {
         return x;
     }
 
-    int Simulation::getYOffset() {
+    int Simulation::getYOffset() const {
         return y;
     }
 
@@ -234,16 +234,16 @@ namespace tppoo {
         entities->at(i)->kill();
     }
 
-    int Simulation::getNEntities() {
+    int Simulation::getNEntities() const {
         return (int) entities->size();
     }
 
-    Entity *Simulation::getEntity(int n) {
+    Entity *Simulation::getEntity(int n) const {
         if (n < 0 || n >= entities->size()) throw EntityNotFound();
         return entities->at(n);
     }
 
-    int Simulation::getVar(std::string varName) {
+    int Simulation::getVar(std::string varName) const {
         if (vars->find(varName) == vars->end()) throw VarNotFound();
         return vars->at(varName);
     }
@@ -256,7 +256,7 @@ namespace tppoo {
         return false;
     }
 
-    std::vector<Entity *> Simulation::getEntitiesInside(int x1, int y1, int x2, int y2) {
+    std::vector<Entity *> Simulation::getEntitiesInside(int x1, int y1, int x2, int y2) const {
         std::vector<Entity *> vector;
         if (x1 < 0) x1 = Simulation::getNC() - abs(x1) % Simulation::getNC();
         else x1 = x1 % Simulation::getNC();

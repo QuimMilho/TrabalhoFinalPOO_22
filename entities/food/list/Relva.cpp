@@ -33,7 +33,7 @@ namespace tppoo {
         return 0;
     }
 
-    bool Relva::isRelva() {
+    bool Relva::isRelva() const {
         return true;
     }
 
