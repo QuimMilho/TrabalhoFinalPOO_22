@@ -20,36 +20,36 @@ namespace tppoo {
             if (e->getX() == x && e->getY() == y && !e->isDead()) {
                 if (e->isAnimal()) {
                     Animal *a = (Animal *) e;
-                    std::cout << "Id: " << i << ", Especie: ";
+                    Handler::instance->commandWindow << "Id: " << i << ", Especie: ";
                     if (e->isCoelho()) {
-                        std::cout << "Coelho";
+                        Handler::instance->commandWindow << "Coelho";
                     } else if (e->isCanguru()) {
-                        std::cout << "Canguru";
+                        Handler::instance->commandWindow << "Canguru";
                     } else if (e->isLobo()) {
-                        std::cout << "Lobo";
+                        Handler::instance->commandWindow << "Lobo";
                     } else if (e->isOvelha()) {
-                        std::cout << "Ovelha";
+                        Handler::instance->commandWindow << "Ovelha";
                     } else {
-                        std::cout << "Animal Mistério";
+                        Handler::instance->commandWindow << "Animal Mistério";
                     }
-                    std::cout << ", Vida: " << a->getLife() << ", Peso: " << a->getWeight() <<
-                            ", Fome: " << a->getHunger() << ", Lifetime: " << e->getLifetime() << std::endl;
+                    Handler::instance->commandWindow << ", Vida: " << a->getLife() << ", Peso: " << a->getWeight() <<
+                            ", Fome: " << a->getHunger() << ", Lifetime: " << e->getLifetime() << "\n";
                 } else {
                     Food *f = (Food *) e;
-                    std::cout << "Id: " << i << ", Tipo: ";
+                    Handler::instance->commandWindow << "Id: " << i << ", Tipo: ";
                     if (e->isCenoura()) {
-                        std::cout << "Cenoura";
+                        Handler::instance->commandWindow << "Cenoura";
                     } else if (e->isRelva()) {
-                        std::cout << "Relva";
+                        Handler::instance->commandWindow << "Relva";
                     } else if (e->isCorpo()) {
-                        std::cout << "Corpo";
+                        Handler::instance->commandWindow << "Corpo";
                     } else if (e->isBife()) {
-                        std::cout << "Bife";
+                        Handler::instance->commandWindow << "Bife";
                     } else {
-                        std::cout << "Alimento Mistério";
+                        Handler::instance->commandWindow << "Alimento Mistério";
                     }
-                    std::cout << ", Nutrientes: " << f->getNut() << ", Toxicidade: " << f->getTox() <<
-                            ", Lifetime: " << e->getLifetime() << std::endl;
+                    Handler::instance->commandWindow << ", Nutrientes: " << f->getNut() << ", Toxicidade: " << f->getTox() <<
+                            ", Lifetime: " << e->getLifetime() << "\n";
                 }
             }
         }
@@ -63,38 +63,38 @@ namespace tppoo {
         if (e->isDead()) throw EntityAlreadyDead();
         if (e->isAnimal()) {
             Animal *a = (Animal *) e;
-            std::cout << "Id: " << n << ", Especie: ";
+            Handler::instance->commandWindow << "Id: " << n << ", Especie: ";
             if (e->isCoelho()) {
-                std::cout << "Coelho";
+                Handler::instance->commandWindow << "Coelho";
             } else if (e->isCanguru()) {
-                std::cout << "Canguru";
+                Handler::instance->commandWindow << "Canguru";
             } else if (e->isLobo()) {
-                std::cout << "Lobo";
+                Handler::instance->commandWindow << "Lobo";
             } else if (e->isOvelha()) {
-                std::cout << "Ovelha";
+                Handler::instance->commandWindow << "Ovelha";
             } else {
-                std::cout << "Animal Mistério";
+                Handler::instance->commandWindow << "Animal Mistério";
             }
-            std::cout << ", Vida: " << a->getLife() << ", Peso: " << a->getWeight() <<
+            Handler::instance->commandWindow << ", Vida: " << a->getLife() << ", Peso: " << a->getWeight() <<
                       ", Fome: " << a->getHunger() << ", Lifetime: " << e->getLifetime()
-                      << ", X: " << e->getX() << ", Y: " << e->getY() << std::endl;
+                      << ", X: " << e->getX() << ", Y: " << e->getY() << "\n";
         } else {
             Food *f = (Food *) e;
-            std::cout << "Id: " << n << ", Tipo: ";
+            Handler::instance->commandWindow << "Id: " << n << ", Tipo: ";
             if (e->isCenoura()) {
-                std::cout << "Cenoura";
+                Handler::instance->commandWindow << "Cenoura";
             } else if (e->isRelva()) {
-                std::cout << "Relva";
+                Handler::instance->commandWindow << "Relva";
             } else if (e->isCorpo()) {
-                std::cout << "Corpo";
+                Handler::instance->commandWindow << "Corpo";
             } else if (e->isBife()) {
-                std::cout << "Bife";
+                Handler::instance->commandWindow << "Bife";
             } else {
-                std::cout << "Alimento Mistério";
+                Handler::instance->commandWindow << "Alimento Mistério";
             }
-            std::cout << ", Nutrientes: " << f->getNut() << ", Toxicidade: " << f->getTox() <<
+            Handler::instance->commandWindow << ", Nutrientes: " << f->getNut() << ", Toxicidade: " << f->getTox() <<
                       ", Lifetime: " << e->getLifetime()<< ", X: " << e->getX() << ", Y: " <<
-                      e->getY() << std::endl;
+                      e->getY() << "\n";
         }
         return 0;
     }
