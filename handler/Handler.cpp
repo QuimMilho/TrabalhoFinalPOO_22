@@ -61,30 +61,31 @@ namespace tppoo {
         sim->render();
         do {
             std::string cmdText;
-            std::cout << ">";
-            std::getline(std::cin, cmdText);
+            commandWindow << ">";
+            commandWindow >> cmdText;
+            commandWindow.clear();
             try {
                 exit = cmd->executeCommand(cmdText);
             } catch (CommandNotFound& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+                commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (NotANumber& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+                commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (InvalidArguments& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+                commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (FileNotFound& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+                commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (EntityNotFound& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+                commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (EntityAlreadyDead& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+                commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (OutOfBounds& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+                commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (WrongType& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+                commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (SimulationNotFound& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+                commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (std::exception& e) {
-                std::cout << "Ocorreu um erro ao executares esse comando: " << e.what() << std::endl;
+                commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             }
             if (exit == 2) {
                 sim->render();
@@ -192,6 +193,72 @@ namespace tppoo {
             }
             if (e->isDead()) newEnt->kill();
             for (int h = 0; h < e->getLifetime(); h++) newEnt->addLifetime();
+        }
+    }
+
+    void Handler::updateCoords() {
+        //Update coords
+        topCoordsWindow.clear();
+        topCoordsWindow << sim->getXOffset() << " " << sim->getYOffset();
+
+        botCoordsWindow.clear();
+        botCoordsWindow << sim->getXOffset() + (Simulation::getNC() < MAX_X_SIZE ? Simulation::getNC() - 1 : MAX_X_SIZE - 1)
+        << " " << sim->getYOffset() + MAX_Y_SIZE - 1;
+
+        //Update borders
+            //Topo
+        if (sim->getYOffset() <= 0) {
+            updateBorder(TOP, (char) 219);
+        } else {
+            updateBorder(TOP, (char) 177);
+        }
+            //Direita
+        if (sim->getXOffset() <= 0) {
+            updateBorder(LEFT, (char) 219);
+        } else {
+            updateBorder(LEFT, (char) 177);
+        }
+            //Baixo
+        if (sim->getYOffset() + MAX_Y_SIZE >= Simulation::getNL()) {
+            updateBorder(BOTTOM, (char) 219);
+        } else {
+            updateBorder(BOTTOM, (char) 177);
+        }
+            //Esquerda
+        if (sim->getXOffset() + MAX_X_SIZE >= Simulation::getNC()) {
+            updateBorder(RIGHT, (char) 219);
+        } else {
+            updateBorder(RIGHT, (char) 177);
+        }
+    }
+
+    void Handler::updateBorder(int b, char c) {
+        if (b == TOP || b == BOTTOM) {
+            if (b == TOP) {
+                topBorderWindow.clear();
+            } else {
+                botBorderWindow.clear();
+            }
+            for (int i = 0; i < (Simulation::getNC() < MAX_X_SIZE ? Simulation::getNC() + 4 : 57); i++) {
+                if (b == TOP) {
+                    topBorderWindow << c;
+                } else {
+                    botBorderWindow << c;
+                }
+            }
+        } else if (b == RIGHT || b == LEFT) {
+            if (b == RIGHT) {
+                rightBorderWindow.clear();
+            } else {
+                leftBorderWindow.clear();
+            }
+            for (int i = 0; i < 15; i++) {
+                if (b == RIGHT) {
+                    rightBorderWindow << c << c;
+                } else {
+                    leftBorderWindow << c << c;
+                }
+            }
         }
     }
 
