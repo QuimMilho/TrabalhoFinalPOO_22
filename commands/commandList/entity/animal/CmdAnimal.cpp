@@ -102,20 +102,20 @@ namespace tppoo {
             for (int i = 0; i < handler->getSimulation()->getNEntities(); i++) {
                 Entity *e = handler->getSimulation()->getEntity(i);
                 if (e->isAnimal() && !e->isDead()) {
-                    std::cout << "Id: " << i << ", Especie: ";
+                    Handler::instance->commandWindow << "Id: " << i << ", Especie: ";
                     if (e->isCoelho()) {
-                        std::cout << "Coelho";
+                        Handler::instance->commandWindow << "Coelho";
                     } else if (e->isCanguru()) {
-                        std::cout << "Canguru";
+                        Handler::instance->commandWindow << "Canguru";
                     } else if (e->isLobo()) {
-                        std::cout << "Lobo";
+                        Handler::instance->commandWindow << "Lobo";
                     } else if (e->isOvelha()) {
-                        std::cout << "Ovelha";
+                        Handler::instance->commandWindow << "Ovelha";
                     } else {
-                        std::cout << "Animal Mistério";
+                        Handler::instance->commandWindow << "Animal Mistério";
                     }
                     Animal *a = (Animal *) e;
-                    std::cout << ", Saude: " << a->getLife() << std::endl;
+                    Handler::instance->commandWindow << ", Saude: " << a->getLife() << "\n";
                 }
             }
         } else if (nargs == 1) {
@@ -123,45 +123,45 @@ namespace tppoo {
                 for (int i = 0; i < handler->getSimulation()->getNEntities(); i++) {
                     Entity *e = handler->getSimulation()->getEntity(i);
                     if (e->isCoelho() && !e->isDead()) {
-                        std::cout << "Id: " << i << ", Especie: Coelho";
+                        Handler::instance->commandWindow << "Id: " << i << ", Especie: Coelho";
                         Animal *a = (Animal *) e;
-                        std::cout << ", Saude: " << a->getLife() << std::endl;
+                        Handler::instance->commandWindow << ", Saude: " << a->getLife() << "\n";
                     }
                 }
             } else if (args[0] == "o") {
                 for (int i = 0; i < handler->getSimulation()->getNEntities(); i++) {
                     Entity *e = handler->getSimulation()->getEntity(i);
                     if (e->isOvelha() && !e->isDead()) {
-                        std::cout << "Id: " << i << ", Especie: Ovelha";
+                        Handler::instance->commandWindow << "Id: " << i << ", Especie: Ovelha";
                         Animal *a = (Animal *) e;
-                        std::cout << ", Saude: " << a->getLife() << std::endl;
+                        Handler::instance->commandWindow << ", Saude: " << a->getLife() << "\n";
                     }
                 }
             } else if (args[0] == "l") {
                 for (int i = 0; i < handler->getSimulation()->getNEntities(); i++) {
                     Entity *e = handler->getSimulation()->getEntity(i);
                     if (e->isLobo() && !e->isDead()) {
-                        std::cout << "Id: " << i << ", Especie: Lobo";
+                        Handler::instance->commandWindow << "Id: " << i << ", Especie: Lobo";
                         Animal *a = (Animal *) e;
-                        std::cout << ", Saude: " << a->getLife() << std::endl;
+                        Handler::instance->commandWindow << ", Saude: " << a->getLife() << "\n";
                     }
                 }
             } else if (args[0] == "g") {
                 for (int i = 0; i < handler->getSimulation()->getNEntities(); i++) {
                     Entity *e = handler->getSimulation()->getEntity(i);
                     if (e->isCanguru() && !e->isDead()) {
-                        std::cout << "Id: " << i << ", Especie: Canguru";
+                        Handler::instance->commandWindow << "Id: " << i << ", Especie: Canguru";
                         Animal *a = (Animal *) e;
-                        std::cout << ", Saude: " << a->getLife() << std::endl;
+                        Handler::instance->commandWindow << ", Saude: " << a->getLife() << "\n";
                     }
                 }
             } else if (args[0] == "m") {
                 for (int i = 0; i < handler->getSimulation()->getNEntities(); i++) {
                     Entity *e = handler->getSimulation()->getEntity(i);
                     if (e->isAnimMisterio() && !e->isDead()) {
-                        std::cout << "Id: " << i << ", Especie: Animal Misterio";
+                        Handler::instance->commandWindow << "Id: " << i << ", Especie: Animal Misterio";
                         Animal *a = (Animal *) e;
-                        std::cout << ", Saude: " << a->getLife() << std::endl;
+                        Handler::instance->commandWindow << ", Saude: " << a->getLife() << "\n";
                     }
                 }
             } else throw InvalidArguments();
@@ -177,20 +177,20 @@ namespace tppoo {
             for (int i = 0; i < handler->getSimulation()->getNEntities(); i++) {
                 Entity *e = handler->getSimulation()->getEntity(i);
                 if (e->isAnimal() && !e->isDead() && isBetweenOrEquals(e->getX(), e->getY(), x1, y1, x2, y2)) {
-                    std::cout << "Id: " << i << ", Especie: ";
+                    Handler::instance->commandWindow << "Id: " << i << ", Especie: ";
                     if (e->isCoelho()) {
-                        std::cout << "Coelho";
+                        Handler::instance->commandWindow << "Coelho";
                     } else if (e->isCanguru()) {
-                        std::cout << "Canguru";
+                        Handler::instance->commandWindow << "Canguru";
                     } else if (e->isLobo()) {
-                        std::cout << "Lobo";
+                        Handler::instance->commandWindow << "Lobo";
                     } else if (e->isOvelha()) {
-                        std::cout << "Ovelha";
+                        Handler::instance->commandWindow << "Ovelha";
                     } else {
-                        std::cout << "Animal Mistério";
+                        Handler::instance->commandWindow << "Animal Mistério";
                     }
                     Animal *a = (Animal *) e;
-                    std::cout << ", Saude: " << a->getLife() << std::endl;
+                    Handler::instance->commandWindow << ", Saude: " << a->getLife() << "\n";
                 }
             }
         } else throw InvalidArguments();
@@ -204,20 +204,20 @@ namespace tppoo {
         for (int i = 0; i < handler->getSimulation()->getNEntities(); i++) {
             Entity *e = handler->getSimulation()->getEntity(i);
             if (e->isAnimal() && !e->isDead() && isBetweenOrEquals(e->getX(), e->getY(), x, y, x + 52, y + 18)) {
-                std::cout << "Id: " << i << ", Especie: ";
+                Handler::instance->commandWindow << "Id: " << i << ", Especie: ";
                 if (e->isCoelho()) {
-                    std::cout << "Coelho";
+                    Handler::instance->commandWindow << "Coelho";
                 } else if (e->isCanguru()) {
-                    std::cout << "Canguru";
+                    Handler::instance->commandWindow << "Canguru";
                 } else if (e->isLobo()) {
-                    std::cout << "Lobo";
+                    Handler::instance->commandWindow << "Lobo";
                 } else if (e->isOvelha()) {
-                    std::cout << "Ovelha";
+                    Handler::instance->commandWindow << "Ovelha";
                 } else {
-                    std::cout << "Animal Mistério";
+                    Handler::instance->commandWindow << "Animal Mistério";
                 }
                 Animal *a = (Animal *) e;
-                std::cout << ", Saude: " << a->getLife() << std::endl;
+                Handler::instance->commandWindow << ", Saude: " << a->getLife() << "\n";
             }
         }
         return 0;
