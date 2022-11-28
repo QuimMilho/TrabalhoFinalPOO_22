@@ -130,19 +130,19 @@ namespace tppoo {
             for (int i = 0; i < Handler::instance->getSimulation()->getNEntities(); i++) {
                 Entity * e = Handler::instance->getSimulation()->getEntity(i);
                 if (e->isFood() && !e->isDead()) {
-                    std::cout << "Id: " << i << ", tipo: ";
+                    Handler::instance->commandWindow << "Id: " << i << ", tipo: ";
                     if (e->isRelva()) {
-                        std::cout << "Relva";
+                        Handler::instance->commandWindow << "Relva";
                     } else if (e->isCenoura()) {
-                        std::cout << "Cenoura";
+                        Handler::instance->commandWindow << "Cenoura";
                     } else if (e->isCorpo()) {
-                        std::cout << "Corpo";
+                        Handler::instance->commandWindow << "Corpo";
                     } else if (e->isBife()) {
-                        std::cout << "Bife";
+                        Handler::instance->commandWindow << "Bife";
                     } else {
-                        std::cout << "Alimento Misterio";
+                        Handler::instance->commandWindow << "Alimento Misterio";
                     }
-                    std::cout << ", X: " << e->getX() << ", Y: " << e->getY() << std::endl;
+                    Handler::instance->commandWindow << ", X: " << e->getX() << ", Y: " << e->getY() << "\n";
                 }
             }
         } else if (nargs == 1) {
@@ -152,24 +152,24 @@ namespace tppoo {
                 Entity * e = Handler::instance->getSimulation()->getEntity(i);
                 if (e->isDead()) continue;
                 if (e->isRelva() && args[0] == "r") {
-                    std::cout << "Id: " << i << ", tipo: " << "Relva" << ", X: " << e->getX() << ", Y: "
-                            << e->getY() << std::endl;
+                    Handler::instance->commandWindow << "Id: " << i << ", tipo: " << "Relva" << ", X: " << e->getX() << ", Y: "
+                            << e->getY() << "\n";
                 }
                 if (e->isCenoura() && args[0] == "t") {
-                    std::cout << "Id: " << i << ", tipo: " << "Cenoura" << ", X: " << e->getX() << ", Y: "
-                            << e->getY() << std::endl;
+                    Handler::instance->commandWindow << "Id: " << i << ", tipo: " << "Cenoura" << ", X: " << e->getX() << ", Y: "
+                            << e->getY() << "\n";
                 }
                 if (e->isCorpo() && args[0] == "p") {
-                    std::cout << "Id: " << i << ", tipo: " << "Corpo" << ", X: " << e->getX() << ", Y: "
-                            << e->getY() << std::endl;
+                    Handler::instance->commandWindow << "Id: " << i << ", tipo: " << "Corpo" << ", X: " << e->getX() << ", Y: "
+                            << e->getY() << "\n";
                 }
                 if (e->isBife() && args[0] == "b") {
-                    std::cout << "Id: " << i << ", tipo: " << "Bife" << ", X: " << e->getX() << ", Y: "
-                            << e->getY() << std::endl;
+                    Handler::instance->commandWindow << "Id: " << i << ", tipo: " << "Bife" << ", X: " << e->getX() << ", Y: "
+                            << e->getY() << "\n";
                 }
                 if (e->isAlimMisterio() && args[0] == "a") {
-                    std::cout << "Id: " << i << ", tipo: " << "Alimento Misterio" << ", X: " << e->getX()
-                            << ", Y: " << e->getY() << std::endl;
+                    Handler::instance->commandWindow << "Id: " << i << ", tipo: " << "Alimento Misterio" << ", X: " << e->getX()
+                            << ", Y: " << e->getY() << "\n";
                 }
             }
         } else if (nargs == 4) {
@@ -181,19 +181,19 @@ namespace tppoo {
             for (int i = 0; i < Handler::instance->getSimulation()->getNEntities(); i++) {
                 Entity * e = Handler::instance->getSimulation()->getEntity(i);
                 if (e->isFood() && isBetweenOrEquals(e->getX(), e->getY(), x1, y1, x2, y2) && !e->isDead()) {
-                    std::cout << "Id: " << i << ", tipo: ";
+                    Handler::instance->commandWindow << "Id: " << i << ", tipo: ";
                     if (e->isRelva()) {
-                        std::cout << "Relva";
+                        Handler::instance->commandWindow << "Relva";
                     } else if (e->isCenoura()) {
-                        std::cout << "Cenoura";
+                        Handler::instance->commandWindow << "Cenoura";
                     } else if (e->isCorpo()) {
-                        std::cout << "Corpo";
+                        Handler::instance->commandWindow << "Corpo";
                     } else if (e->isBife()) {
-                        std::cout << "Bife";
+                        Handler::instance->commandWindow << "Bife";
                     } else {
-                        std::cout << "Alimento Misterio";
+                        Handler::instance->commandWindow << "Alimento Misterio";
                     }
-                    std::cout << ", X: " << e->getX() << ", Y: " << e->getY() << std::endl;
+                    Handler::instance->commandWindow << ", X: " << e->getX() << ", Y: " << e->getY() << "\n";
                 }
             }
         } else throw InvalidArguments();
