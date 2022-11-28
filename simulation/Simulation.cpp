@@ -3,7 +3,6 @@
 #include <fstream>
 #include <sstream>
 #include "../utils/utils.hpp"
-#include "../handler/Handler.hpp"
 #include "../exceptions/CommandNotFound.hpp"
 #include "../exceptions/NotANumber.hpp"
 #include "../exceptions/InvalidArguments.hpp"
@@ -14,6 +13,7 @@
 #include "../exceptions/WrongType.hpp"
 #include "../exceptions/VarNotFound.hpp"
 #include "../exceptions/SimulationNotFound.hpp"
+#include "../handler/Handler.hpp"
 
 namespace tppoo {
 
@@ -86,56 +86,32 @@ namespace tppoo {
         }
     }
 
-    void Simulation::render() { // 120x30
-        clear();
-        std::cout << std::endl << "  " << x << " " << y << std::endl << "  ";
+    void Simulation::render() {
+        if (moved) {
+            moved = false;
+            Handler::instance->updateCoords();
+        }
+        Handler::instance->simulationWindow.clear();
 
-        char borderTop, borderRight, borderLeft, borderBottom;
-        if (y == 0) borderTop = (char) 219;
-        else borderTop = (char) 176;
-        if (y + 18 < Simulation::nl) borderBottom = (char) 176;
-        else borderBottom = (char) 219;
-        if (x == 0) borderLeft = (char) 219;
-        else borderLeft = (char) 176;
-        if (x + 52 < Simulation::nc) borderRight = (char) 176;
-        else borderRight = (char) 219;
-
-        int squareX = 52, squareY = 18;
-        if (Simulation::nc < 52)
+        int squareX = MAX_X_SIZE, squareY = MAX_Y_SIZE;
+        if (Simulation::nc < MAX_X_SIZE)
             squareX = Simulation::nc;
-        if (Simulation::nl < 18)
+        if (Simulation::nl < MAX_Y_SIZE)
             squareY = Simulation::nl;
 
-        for (int i = 0; i < squareX + 4; i++) {
-            std::cout << borderTop;
-        }
-        std::cout << std::endl << "  ";
-
-        std::vector<Entity *> v = getEntitiesInside(x, y, x + squareX - 1, y + squareY - 1);
+        std::vector<Entity *> ents = getEntitiesInside(x, y, x + squareX - 1, y + squareY - 1);
         for (int i = 0; i < squareY; i++) {
-            std::cout << borderLeft << borderLeft;
             for (int h = 0; h < squareX; h++) {
                 bool printed = false;
-                for (Entity * e : v) {
+                for (Entity * e : ents) {
                     if (e->getX() == h + x && e->getY() == i + y && !printed) {
-                        std::cout << e->getChar();
+                        Handler::instance->simulationWindow << e->getChar();
                         printed = true;
                     }
                 }
-                if (!printed) std::cout << ' ';
+                if (!printed) Handler::instance->simulationWindow << ' ';
             }
-            std::cout << borderRight << borderRight << std::endl << "  ";
         }
-
-        for (int i = 0; i < squareX + 4; i++) {
-            std::cout << borderBottom;
-        }
-        std::cout << std::endl;
-        for (int i = 0; i < squareX + 1; i++) {
-            std::cout << ' ';
-        }
-
-        std::cout << x + squareX - 1 << " " << y + squareY - 1 << std::endl << std::endl;
     }
 
     void Simulation::tickMultiple(int n) {
@@ -162,50 +138,52 @@ namespace tppoo {
     }
 
     void Simulation::addOffset(const int x, const int y) {
-        if ((nc <= 52 || x == 0) && (nl <= 18 || y == 0)) throw OutOfBounds();
-        if (nc > 52) {
+        if ((nc <= MAX_X_SIZE || x == 0) && (nl <= MAX_Y_SIZE || y == 0)) throw OutOfBounds();
+        if (nc > MAX_X_SIZE) {
             int temp = this->x + x;
-            if (temp > nc - 52) {
-                temp = nc - 52;
+            if (temp > nc - MAX_X_SIZE) {
+                temp = nc - MAX_X_SIZE;
             } else if (temp < 0) {
                 temp = 0;
             }
             this->x = temp;
         }
-        if (nl > 18) {
+        if (nl > MAX_Y_SIZE) {
             int temp = this->y + y;
-            if (temp > nl - 18) {
-                temp = nl - 18;
+            if (temp > nl - MAX_Y_SIZE) {
+                temp = nl - MAX_Y_SIZE;
             } else if (temp < 0) {
                 temp = 0;
             }
             this->y = temp;
         }
-        std::cout << this->x << " " << this->y << std::endl;
+        moved = true;
     }
 
     void Simulation::addXOffset(const int x) {
-        if (nc > 52) {
+        if (nc > MAX_X_SIZE) {
             int temp = this->x + x;
-            if (temp > nc - 52) {
-                temp = nc - 52;
+            if (temp > nc - MAX_X_SIZE) {
+                temp = nc - MAX_X_SIZE;
             } else if (temp < 0) {
                 temp = 0;
             }
             this->x = temp;
         } else throw OutOfBounds();
+        moved = true;
     }
 
     void Simulation::addYOffset(const int y) {
-        if (nl > 18) {
+        if (nl > MAX_Y_SIZE) {
             int temp = this->y + y;
-            if (temp > nl - 18) {
-                temp = nl - 18;
+            if (temp > nl - MAX_Y_SIZE) {
+                temp = nl - MAX_Y_SIZE;
             } else if (temp < 0) {
                 temp = 0;
             }
             this->y = temp;
         } else throw OutOfBounds();
+        moved = true;
     }
 
     void Simulation::summon(tppoo::Entity *ent) {

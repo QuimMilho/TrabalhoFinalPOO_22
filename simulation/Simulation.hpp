@@ -6,6 +6,9 @@
 #include <unordered_map>
 #include <vector>
 
+#define MAX_X_SIZE 53
+#define MAX_Y_SIZE 15
+
 namespace tppoo {
 
     class Simulation {
@@ -15,6 +18,7 @@ namespace tppoo {
         static std::unordered_map<std::string, int> *vars;
         int x, y;
         std::vector<Entity *> *entities;
+        bool moved = true;
     public:
         Simulation();
         ~Simulation();
