@@ -1,12 +1,13 @@
 #include <iostream>
 #include "Command.hpp"
+#include "../handler/Handler.hpp"
 
 namespace tppoo {
 
     int Command::execute(std::string cmdName, std::string *args, int nargs) {
-        std::cout << "Nome do comando: " << cmdName << std::endl;
+        Handler::instance->commandWindow << "Nome do comando: " << cmdName << "\n";
         for (int i = 0; i < nargs; i++) {
-            std::cout << args[i] << std::endl;
+            Handler::instance->commandWindow << args[i] << "\n";
         }
         return 0;
     }
