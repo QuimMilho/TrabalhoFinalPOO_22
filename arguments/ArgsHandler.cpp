@@ -22,13 +22,13 @@ namespace tppoo {
     }
 
     void ArgsHandler::printInfo() {
-        std::cout << "Arguments" << std::endl;
+        std::cout << "Argumentos" << std::endl;
         std::cout << "-N <numero de colunas> <numero de linhas> :" << std::endl;
         std::cout << EXPLANATION_SPACES << "Numero de linhas e colunas da simulacao" << std::endl;
-        std::cout << "-NL <number> :" << std::endl;
+        std::cout << "-NL <numero de linhas> :" << std::endl;
         std::cout << EXPLANATION_SPACES << "Numero de linhas da simulacao." << std::endl;
         std::cout << EXPLANATION_SPACES << "Requer -NC para funcionar" << std::endl;
-        std::cout << "-NC <number> :" << std::endl;
+        std::cout << "-NC <numero de colunas> :" << std::endl;
         std::cout << EXPLANATION_SPACES << "Numero de colunas da simulacao." << std::endl;
         std::cout << EXPLANATION_SPACES << "Requer -NL para funcionar" << std::endl;
     }
