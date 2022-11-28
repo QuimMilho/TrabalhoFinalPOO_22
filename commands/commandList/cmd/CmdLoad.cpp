@@ -38,25 +38,25 @@ namespace tppoo {
             try {
                 exit = Handler::instance->getCommandHandler()->executeCommand(line);
             } catch (CommandNotFound& e) {
-                std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
+                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
             } catch (NotANumber& e) {
-                std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
+                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
             } catch (InvalidArguments& e) {
-                std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
+                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
             } catch (FileNotFound& e) {
-                std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
+                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
             } catch (EntityNotFound& e) {
-                std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
+                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
             } catch (EntityAlreadyDead& e) {
-                std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
+                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
             } catch (OutOfBounds& e) {
-                std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
+                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
             } catch (WrongType& e) {
-                std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
+                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
             } catch (SimulationNotFound& e) {
-                std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
+                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
             } catch (std::exception& e) {
-                std::cout << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << std::endl;
+                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
             }
             if (exit == 2) render = true;
         }
