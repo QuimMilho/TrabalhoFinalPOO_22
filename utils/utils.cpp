@@ -81,7 +81,7 @@ namespace tppoo {
     }
 
     Random::Random() {
-        generator = new std::default_random_engine();
+        generator = new std::default_random_engine(getCurrentTime());
     }
 
     Random::~Random() {
@@ -96,10 +96,6 @@ namespace tppoo {
     int Random::random(int a, int b) {
         std::uniform_int_distribution<int> distribution(a, b);
         return distribution(*generator);
-    }
-
-    void clear() {
-        system("cls");
     }
 
 }
