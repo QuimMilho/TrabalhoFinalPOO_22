@@ -66,7 +66,7 @@ namespace tppoo {
         void copySim(Simulation *saved, Simulation *newSim);
         bool simulationExists(const std::string& name);
         void updateCoords();
-        void updateBorder(int b, char c);
+        void updateBorder(int b, char c, char c2);
     };
 
 }

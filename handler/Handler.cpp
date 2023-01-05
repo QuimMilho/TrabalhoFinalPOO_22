@@ -207,43 +207,53 @@ namespace tppoo {
 
         //Update borders
             //Topo
+            char white = (char) 219, gray = (char) 177;
         if (sim->getYOffset() <= 0) {
-            updateBorder(TOP, (char) 219);
+            updateBorder(TOP, white, gray);
         } else {
-            updateBorder(TOP, (char) 177);
+            updateBorder(TOP, gray, white);
         }
             //Direita
         if (sim->getXOffset() <= 0) {
-            updateBorder(LEFT, (char) 219);
+            updateBorder(LEFT, white, gray);
         } else {
-            updateBorder(LEFT, (char) 177);
+            updateBorder(LEFT, gray, white);
         }
             //Baixo
         if (sim->getYOffset() + MAX_Y_SIZE >= Simulation::getNL()) {
-            updateBorder(BOTTOM, (char) 219);
+            updateBorder(BOTTOM, white, gray);
         } else {
-            updateBorder(BOTTOM, (char) 177);
+            updateBorder(BOTTOM, gray, white);
         }
             //Esquerda
         if (sim->getXOffset() + MAX_X_SIZE >= Simulation::getNC()) {
-            updateBorder(RIGHT, (char) 219);
+            updateBorder(RIGHT, white, gray);
         } else {
-            updateBorder(RIGHT, (char) 177);
+            updateBorder(RIGHT, gray, white);
         }
     }
 
-    void Handler::updateBorder(int b, char c) {
+    void Handler::updateBorder(int b, char c, char c2) {
         if (b == TOP || b == BOTTOM) {
             if (b == TOP) {
                 topBorderWindow.clear();
             } else {
                 botBorderWindow.clear();
             }
-            for (int i = 0; i < (Simulation::getNC() < MAX_X_SIZE ? Simulation::getNC() + 4 : 57); i++) {
+            int size = Simulation::getNC() < MAX_X_SIZE ? Simulation::getNC() + 4 : 57;
+            for (int i = 0; i < size; i++) {
                 if (b == TOP) {
-                    topBorderWindow << c;
+                    if (i > 1 && i < size - 2 && (Handler::instance->getSimulation()->getXOffset() + i - 2) % 5 == 0) {
+                        topBorderWindow << c2;
+                    } else {
+                        topBorderWindow << c;
+                    }
                 } else {
-                    botBorderWindow << c;
+                    if (i > 1 && i < size - 2 && (Handler::instance->getSimulation()->getXOffset() + i - 2) % 5 == 0) {
+                        botBorderWindow << c2;
+                    } else {
+                        botBorderWindow << c;
+                    }
                 }
             }
         } else if (b == RIGHT || b == LEFT) {
@@ -254,9 +264,17 @@ namespace tppoo {
             }
             for (int i = 0; i < 15; i++) {
                 if (b == RIGHT) {
-                    rightBorderWindow << c << c;
+                    if (i < 14 && (Handler::instance->getSimulation()->getYOffset() + i) % 5 == 0) {
+                        rightBorderWindow << c2 << c2;
+                    } else {
+                        rightBorderWindow << c << c;
+                    }
                 } else {
-                    leftBorderWindow << c << c;
+                    if (i < 14 && (Handler::instance->getSimulation()->getYOffset() + i) % 5 == 0) {
+                        leftBorderWindow << c2 << c2;
+                    } else {
+                        leftBorderWindow << c << c;
+                    }
                 }
             }
         }
