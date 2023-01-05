@@ -96,8 +96,6 @@ namespace tppoo {
         int squareX = MAX_X_SIZE, squareY = MAX_Y_SIZE;
         if (Simulation::nc < MAX_X_SIZE)
             squareX = Simulation::nc;
-        if (Simulation::nl < MAX_Y_SIZE)
-            squareY = Simulation::nl;
 
         std::vector<Entity *> ents = getEntitiesInside(x, y, x + squareX - 1, y + squareY - 1);
         for (int i = 0; i < squareY; i++) {
@@ -118,7 +116,6 @@ namespace tppoo {
         for (int i = 0; i < n; i++) {
             tick();
         }
-        render();
     }
 
     void Simulation::tickMultiple(int n, int t) {
