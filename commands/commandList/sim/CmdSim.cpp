@@ -29,6 +29,7 @@ namespace tppoo {
                 n = toNumber(args[0]);
                 if (n <= 0) throw OutOfBounds();
                 Handler::instance->getSimulation()->tickMultiple(n);
+                Handler::instance->getSimulation()->render();
                 break;
             case 2:
                 n = toNumber(args[0]);
