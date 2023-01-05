@@ -6,7 +6,7 @@
 
 namespace tppoo {
 
-    class Animal : public Entity{
+    class Animal : public Entity {
     private:
         int weight, hunger, perception, life;
         std::string smells;
