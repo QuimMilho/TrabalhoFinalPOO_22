@@ -29,4 +29,8 @@ namespace tppoo {
         return true;
     }
 
+    std::string Food::getSmells() const {
+        return smells;
+    }
+
 }

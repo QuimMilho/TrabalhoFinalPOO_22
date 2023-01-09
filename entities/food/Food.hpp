@@ -18,6 +18,8 @@ namespace tppoo {
         bool isFood() const override;
         void setNut(int n);
         void setTox(int n);
+
+        std::string getSmells() const;
     };
 
 }
