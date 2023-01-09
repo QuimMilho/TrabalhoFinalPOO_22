@@ -19,6 +19,7 @@ namespace tppoo {
         int x, y;
         std::vector<Entity *> *entities;
         bool moved = true;
+        void showStats();
     public:
         Simulation();
         ~Simulation();

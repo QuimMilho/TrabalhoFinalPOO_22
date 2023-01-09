@@ -110,6 +110,28 @@ namespace tppoo {
                 if (!printed) Handler::instance->simulationWindow << ' ';
             }
         }
+        showStats();
+    }
+
+    void Simulation::showStats() {
+        Handler::instance->historyWindow.clear();
+        int a = 0, f = 0, d = 0, df = 0, da = 0;
+        for (Entity * e : *entities) {
+            if (e->isDead()) {
+                d++;
+                if (e->isFood()) df++;
+                else da++;
+            }
+            if (e->isAnimal()) a++;
+            if (e->isFood()) f++;
+        }
+        Handler::instance->historyWindow << "Total de entidades: " << (int) entities->size() << "\n";
+        Handler::instance->historyWindow << "Entidades mortas: " << d << "\n";
+        Handler::instance->historyWindow << "Animais: " << a << "\n";
+        Handler::instance->historyWindow << "Comidas: " << f << "\n";
+        Handler::instance->historyWindow << "Entidades vivas: " << (int) entities->size() - d << "\n";
+        Handler::instance->historyWindow << "Animais vivos: " << a - da << "\n";
+        Handler::instance->historyWindow << "Comidas disponiveis: " << f - df << "\n";
     }
 
     void Simulation::tickMultiple(int n) {
