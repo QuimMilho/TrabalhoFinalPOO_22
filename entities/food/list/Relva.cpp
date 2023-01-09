@@ -23,12 +23,7 @@ namespace tppoo {
             return 1;
         }
         if (getLifetime() > maxLifetime * 3 / 4 && !reproduced) {
-            int x = getX() + Handler::instance->random(17) - 8;
-            int y = getY() + Handler::instance->random(9) - 4;
-            if (!Handler::instance->getSimulation()->alreadyHasFood(x, y)) {
-                Handler::instance->getSimulation()->summon(new Relva(x, y));
-                reproduced = true;
-            }
+            if (reproduce(8, 4)) reproduced = true;
         }
         return 0;
     }

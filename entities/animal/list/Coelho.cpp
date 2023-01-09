@@ -1,6 +1,7 @@
 #include "Coelho.hpp"
 #include "../../../exceptions/VarNotFound.hpp"
 #include "../../../handler/Handler.hpp"
+#include "../../food/Food.hpp"
 
 namespace tppoo {
 
@@ -36,27 +37,64 @@ namespace tppoo {
         }
         if (isDead()) return 1;
 
-        int k;
+        int k, maxSteps;
         if (getHunger() > 10) {
+            maxSteps = 3;
             k = Handler::instance->random(1, 3);
         } else if (getHunger() > 20) {
+            maxSteps = 4;
             k = Handler::instance->random(1, 4);
         } else {
+            maxSteps = 2;
             k = Handler::instance->random(1, 2);
         }
 
-        for (int i = 0; i < k; i++) {
-            v = Handler::instance->getSimulation()->getEntitiesInside(getX() - getPerc(),
-                  getY() - getPerc(),getX() + getPerc(), getY() + getPerc());
-            //North, South, West, East
-            bool mov[4] = {false, false, false, false};
-            for (Entity * e : v) {
-
+        v = Handler::instance->getSimulation()->getEntitiesInside(getX() - getPerc(),
+                                                                  getY() - getPerc(),getX() + getPerc(), getY() + getPerc());
+        int goalX = -1, goalY = -1, p = 0, maxDis = INT_MAX;
+        for (Entity * e : v) {
+            if (e->isFood() && p != 2) {
+                Food * f = (Food *) e;
+                k = maxSteps;
+                if (contains(f->getSmells(), "verdura")) {
+                    int dis = abs(getX() - f->getY()) + abs(getY() - f->getY());
+                    if (dis < maxDis) {
+                        p = 1;
+                        maxDis = dis;
+                        goalX = f->getX();
+                        goalY = f->getY();
+                    }
+                }
+            } else {
+                k = maxSteps;
+                Animal * a = (Animal *) e;
+                if (a->getWeight() > 10) {
+                    if (p != 2) {
+                        p = 2;
+                        maxDis = 0;
+                        goalX = 0;
+                        goalY = 0;
+                    }
+                    goalX += a->getX();
+                    goalY += a->getY();
+                    maxDis++;
+                }
             }
         }
 
-        if (getLifetime() % 8 == 0) {
+        if (p == 2) {
+            move(goalX / maxDis, goalY / maxDis, k);
+        } else {
+            move(goalX, goalY, k);
+        }
 
+        eat();
+
+        if (isDead()) return 1;
+
+        if (getLifetime() % 8 == 0) {
+            if (Handler::instance->random(2) == 1)
+                reproduce(10);
         }
 
         return 0;
