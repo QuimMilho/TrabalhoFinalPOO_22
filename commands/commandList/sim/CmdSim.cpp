@@ -14,11 +14,11 @@
 
 namespace tppoo {
 
-    int CmdExit::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdExit::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         return 1;
     }
 
-    int CmdN::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdN::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         int n, p;
         switch (nargs) {
             case 0:
@@ -43,7 +43,7 @@ namespace tppoo {
         return 0;
     }
 
-    int CmdSlide::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdSlide::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs != 2) {
             throw InvalidArguments();
         }
@@ -65,7 +65,7 @@ namespace tppoo {
         return 2;
     }
 
-    int CmdStore::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdStore::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs == 0) throw InvalidArguments();
         std::string str;
         std::stringstream ss(str);
@@ -76,7 +76,7 @@ namespace tppoo {
         return 2;
     }
 
-    int CmdRestore::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdRestore::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs == 0) throw InvalidArguments();
         std::string str;
         std::stringstream ss(str);
@@ -87,7 +87,7 @@ namespace tppoo {
         return 2;
     }
 
-    int CmdNew::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdNew::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs == 0) {
             Handler::instance->newSim();
         } else {
@@ -101,7 +101,7 @@ namespace tppoo {
         return 2;
     }
 
-    int CmdDelete::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdDelete::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs == 0) throw InvalidArguments();
         std::string str;
         std::stringstream ss(str);
@@ -112,7 +112,7 @@ namespace tppoo {
         return 0;
     }
 
-    int CmdRender::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdRender::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         return 2;
     }
 

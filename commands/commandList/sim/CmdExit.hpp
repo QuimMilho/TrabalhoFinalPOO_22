@@ -7,7 +7,7 @@ namespace tppoo {
 
     class CmdExit : public Command {
     public:
-        int execute(std::string cmd, std::string* args, int nargs) override;
+        int execute(std::string cmd, std::string* args, int nargs, std::vector<std::string> &v) override;
     };
 
 }

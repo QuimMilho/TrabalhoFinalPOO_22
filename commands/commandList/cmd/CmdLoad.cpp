@@ -17,7 +17,7 @@
 
 namespace tppoo {
 
-    int CmdLoad::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdLoad::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs == 0) throw InvalidArguments();
         std::string fileName, line;
         std::stringstream ss(fileName);
@@ -35,28 +35,42 @@ namespace tppoo {
         bool render = false;
         while (std::getline(file, line) && exit != 1) {
             i++;
+            std::stringstream cmdSS;
             try {
-                exit = Handler::instance->getCommandHandler()->executeCommand(line);
+                cmdSS << line;
+                v.push_back(cmdSS.str());
+                cmdSS.str(std::string());
+                exit = Handler::instance->getCommandHandler()->executeCommand(line, v);
             } catch (CommandNotFound& e) {
-                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
+                cmdSS << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what();
+                v.push_back(cmdSS.str());
             } catch (NotANumber& e) {
-                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
+                cmdSS << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what();
+                v.push_back(cmdSS.str());
             } catch (InvalidArguments& e) {
-                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
+                cmdSS << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what();
+                v.push_back(cmdSS.str());
             } catch (FileNotFound& e) {
-                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
+                cmdSS << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what();
+                v.push_back(cmdSS.str());
             } catch (EntityNotFound& e) {
-                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
+                cmdSS << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what();
+                v.push_back(cmdSS.str());
             } catch (EntityAlreadyDead& e) {
-                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
+                cmdSS << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what();
+                v.push_back(cmdSS.str());
             } catch (OutOfBounds& e) {
-                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
+                cmdSS << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what();
+                v.push_back(cmdSS.str());
             } catch (WrongType& e) {
-                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
+                cmdSS << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what();
+                v.push_back(cmdSS.str());
             } catch (SimulationNotFound& e) {
-                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
+                cmdSS << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what();
+                v.push_back(cmdSS.str());
             } catch (std::exception& e) {
-                Handler::instance->commandWindow << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what() << "\n";
+                cmdSS << "Ocorreu um erro ao executares o comando numero " << i << ": " << e.what();
+                v.push_back(cmdSS.str());
             }
             if (exit == 2) render = true;
         }

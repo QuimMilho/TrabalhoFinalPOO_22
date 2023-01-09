@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <sstream>
 #include "CmdFood.hpp"
 #include "../../../../simulation/Simulation.hpp"
 #include "../../../../handler/Handler.hpp"
@@ -20,7 +21,7 @@
 
 namespace tppoo {
 
-    int CmdFood::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdFood::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         Handler *handler = Handler::instance;
         int x, y, k = 0;
         switch (nargs) {
@@ -71,15 +72,15 @@ namespace tppoo {
         return 2;
     }
 
-    int CmdFeed::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdFeed::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs != 3 && nargs != 4) throw InvalidArguments();
         int x = toNumber(args[0]);
         int y = toNumber(args[1]);
         int nut = toNumber(args[2]);
         int tox = 0;
         if (nargs == 4) tox = toNumber(args[3]);
-        std::vector<Entity *> v = Handler::instance->getSimulation()->getEntitiesInside(x, y, x, y);
-        for (Entity * e : v) {
+        std::vector<Entity *> ve = Handler::instance->getSimulation()->getEntitiesInside(x, y, x, y);
+        for (Entity * e : ve) {
             if (e->isAnimal() && !e->isDead()) {
                 Animal * a = (Animal *) e;
                 a->setHunger(a->getHunger() - nut);
@@ -89,7 +90,7 @@ namespace tppoo {
         return 0;
     }
 
-    int CmdFeedId::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdFeedId::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs != 2 && nargs != 3) throw InvalidArguments();
         int id = toNumber(args[0]);
         int nut = toNumber(args[1]);
@@ -105,7 +106,7 @@ namespace tppoo {
         return 0;
     }
 
-    int CmdNoFood::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdNoFood::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs == 1) {
             int id = toNumber(args[0]);
             Entity * e = Handler::instance->getSimulation()->getEntity(id);
@@ -114,8 +115,8 @@ namespace tppoo {
         } else if (nargs == 2) {
             int x = toNumber(args[0]);
             int y = toNumber(args[1]);
-            std::vector<Entity *> v = Handler::instance->getSimulation()->getEntitiesInside(x, y, x, y);
-            for (Entity * e : v) {
+            std::vector<Entity *> ve = Handler::instance->getSimulation()->getEntitiesInside(x, y, x, y);
+            for (Entity * e : ve) {
                 if (e->isFood()) {
                     e->kill();
                     return 2;
@@ -125,24 +126,27 @@ namespace tppoo {
         return 0;
     }
 
-    int CmdComida::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdComida::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
+        std::stringstream ss;
         if (nargs == 0) {
             for (int i = 0; i < Handler::instance->getSimulation()->getNEntities(); i++) {
                 Entity * e = Handler::instance->getSimulation()->getEntity(i);
                 if (e->isFood() && !e->isDead()) {
-                    Handler::instance->commandWindow << "Id: " << i << ", tipo: ";
+                    ss << "Id: " << i << ", tipo: ";
                     if (e->isRelva()) {
-                        Handler::instance->commandWindow << "Relva";
+                        ss << "Relva";
                     } else if (e->isCenoura()) {
-                        Handler::instance->commandWindow << "Cenoura";
+                        ss << "Cenoura";
                     } else if (e->isCorpo()) {
-                        Handler::instance->commandWindow << "Corpo";
+                        ss << "Corpo";
                     } else if (e->isBife()) {
-                        Handler::instance->commandWindow << "Bife";
+                        ss << "Bife";
                     } else {
-                        Handler::instance->commandWindow << "Alimento Misterio";
+                        ss << "Alimento Misterio";
                     }
-                    Handler::instance->commandWindow << ", X: " << e->getX() << ", Y: " << e->getY() << "\n";
+                    ss << ", X: " << e->getX() << ", Y: " << e->getY();
+                    v.push_back(ss.str());
+                    ss.str(std::string());
                 }
             }
         } else if (nargs == 1) {
@@ -152,24 +156,34 @@ namespace tppoo {
                 Entity * e = Handler::instance->getSimulation()->getEntity(i);
                 if (e->isDead()) continue;
                 if (e->isRelva() && args[0] == "r") {
-                    Handler::instance->commandWindow << "Id: " << i << ", tipo: " << "Relva" << ", X: " << e->getX() << ", Y: "
-                            << e->getY() << "\n";
+                    ss << "Id: " << i << ", tipo: " << "Relva" << ", X: " << e->getX() << ", Y: "
+                            << e->getY();
+                    v.push_back(ss.str());
+                    ss.str(std::string());
                 }
                 if (e->isCenoura() && args[0] == "t") {
-                    Handler::instance->commandWindow << "Id: " << i << ", tipo: " << "Cenoura" << ", X: " << e->getX() << ", Y: "
-                            << e->getY() << "\n";
+                    ss << "Id: " << i << ", tipo: " << "Cenoura" << ", X: " << e->getX() << ", Y: "
+                            << e->getY();
+                    v.push_back(ss.str());
+                    ss.str(std::string());
                 }
                 if (e->isCorpo() && args[0] == "p") {
-                    Handler::instance->commandWindow << "Id: " << i << ", tipo: " << "Corpo" << ", X: " << e->getX() << ", Y: "
-                            << e->getY() << "\n";
+                    ss << "Id: " << i << ", tipo: " << "Corpo" << ", X: " << e->getX() << ", Y: "
+                            << e->getY();
+                    v.push_back(ss.str());
+                    ss.str(std::string());
                 }
                 if (e->isBife() && args[0] == "b") {
-                    Handler::instance->commandWindow << "Id: " << i << ", tipo: " << "Bife" << ", X: " << e->getX() << ", Y: "
-                            << e->getY() << "\n";
+                    ss << "Id: " << i << ", tipo: " << "Bife" << ", X: " << e->getX() << ", Y: "
+                            << e->getY();
+                    v.push_back(ss.str());
+                    ss.str(std::string());
                 }
                 if (e->isAlimMisterio() && args[0] == "a") {
-                    Handler::instance->commandWindow << "Id: " << i << ", tipo: " << "Alimento Misterio" << ", X: " << e->getX()
-                            << ", Y: " << e->getY() << "\n";
+                    ss << "Id: " << i << ", tipo: " << "Alimento Misterio" << ", X: " << e->getX()
+                            << ", Y: " << e->getY();
+                    v.push_back(ss.str());
+                    ss.str(std::string());
                 }
             }
         } else if (nargs == 4) {
@@ -177,23 +191,24 @@ namespace tppoo {
             int y1 = toNumber(args[1]);
             int x2 = toNumber(args[2]);
             int y2 = toNumber(args[3]);
-            std::vector<Entity *> v = Handler::instance->getSimulation()->getEntitiesInside(x1, y1, x2, y2);
             for (int i = 0; i < Handler::instance->getSimulation()->getNEntities(); i++) {
                 Entity * e = Handler::instance->getSimulation()->getEntity(i);
                 if (e->isFood() && isBetweenOrEquals(e->getX(), e->getY(), x1, y1, x2, y2) && !e->isDead()) {
-                    Handler::instance->commandWindow << "Id: " << i << ", tipo: ";
+                    ss << "Id: " << i << ", tipo: ";
                     if (e->isRelva()) {
-                        Handler::instance->commandWindow << "Relva";
+                        ss << "Relva";
                     } else if (e->isCenoura()) {
-                        Handler::instance->commandWindow << "Cenoura";
+                        ss << "Cenoura";
                     } else if (e->isCorpo()) {
-                        Handler::instance->commandWindow << "Corpo";
+                        ss << "Corpo";
                     } else if (e->isBife()) {
-                        Handler::instance->commandWindow << "Bife";
+                        ss << "Bife";
                     } else {
-                        Handler::instance->commandWindow << "Alimento Misterio";
+                        ss << "Alimento Misterio";
                     }
-                    Handler::instance->commandWindow << ", X: " << e->getX() << ", Y: " << e->getY() << "\n";
+                    ss << ", X: " << e->getX() << ", Y: " << e->getY();
+                    v.push_back(ss.str());
+                    ss.str(std::string());
                 }
             }
         } else throw InvalidArguments();

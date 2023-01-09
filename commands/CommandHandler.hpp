@@ -16,7 +16,8 @@ namespace tppoo {
     public:
         CommandHandler();
         ~CommandHandler();
-        int executeCommand(std::string cmd);
+        int executeCommand(std::string cmdText, std::vector<std::string> &v);
+        void show(std::vector<std::string> &v);
     };
 
 }

@@ -63,28 +63,39 @@ namespace tppoo {
             std::string cmdText;
             commandWindow << ">";
             commandWindow >> cmdText;
-            commandWindow.clear();
             try {
-                exit = cmd->executeCommand(cmdText);
+                std::vector<std::string> v;
+                exit = cmd->executeCommand(cmdText, v);
+                cmd->show(v);
             } catch (CommandNotFound& e) {
+                commandWindow.clear();
                 commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (NotANumber& e) {
+                commandWindow.clear();
                 commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (InvalidArguments& e) {
+                commandWindow.clear();
                 commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (FileNotFound& e) {
+                commandWindow.clear();
                 commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (EntityNotFound& e) {
+                commandWindow.clear();
                 commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (EntityAlreadyDead& e) {
+                commandWindow.clear();
                 commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (OutOfBounds& e) {
+                commandWindow.clear();
                 commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (WrongType& e) {
+                commandWindow.clear();
                 commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (SimulationNotFound& e) {
+                commandWindow.clear();
                 commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             } catch (std::exception& e) {
+                commandWindow.clear();
                 commandWindow << "Ocorreu um erro ao executares esse comando: " << e.what() << "\n";
             }
             if (exit == 2) {

@@ -25,6 +25,7 @@
 #include "commandList/sim/CmdNew.hpp"
 #include "commandList/sim/CmdRender.hpp"
 #include "commandList/entity/food/CmdComida.hpp"
+#include "../handler/Handler.hpp"
 
 namespace tppoo {
 
@@ -73,7 +74,7 @@ namespace tppoo {
         }
     }
 
-    int CommandHandler::executeCommand(std::string cmdText) {
+    int CommandHandler::executeCommand(std::string cmdText, std::vector<std::string> &v) {
         std::stringstream ss(cmdText);
         int n = countArgs(cmdText);
         std::string cmdName;
@@ -89,8 +90,38 @@ namespace tppoo {
             args[i].assign(temp);
         }
 
-        int exit = cmd->execute(cmdName, args, n);
+        int exit = cmd->execute(cmdName, args, n, v);
+
         return exit;
     }
+
+    void CommandHandler::show(std::vector<std::string> &v) {
+        Handler::instance->commandWindow.clear();
+        if (v.size() == 0) return;
+        if (v.size() < 6) {
+            Handler::instance->commandWindow << "Page 1 of 1" << "\n";
+            for (std::string s : v)
+                Handler::instance->commandWindow << s << "\n";
+        } else {
+            int page = 0, maxPage = (((int) v.size()) / 5);
+            if (v.size() % 5 != 0) maxPage++;
+            std::string input;
+            do {
+                Handler::instance->commandWindow << "Page " << page + 1 << " of " << maxPage << "\n";
+                for (int i = page * 5; i < (page + 1) * 5; i++) {
+                    if (i < v.size())
+                    Handler::instance->commandWindow << v.at(i) << "\n";
+                }
+                Handler::instance->commandWindow >> input;
+                if (input == "KEY_RIGHT") {
+                    if (page < maxPage - 1) page++;
+                } else if (input == "KEY_LEFT") {
+                    if (page > 0) page--;
+                }
+                Handler::instance->commandWindow.clear();
+            } while (input == "KEY_RIGHT" || input == "KEY_LEFT");
+        }
+    }
+
 
 }

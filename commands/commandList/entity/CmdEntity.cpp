@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <sstream>
 #include "CmdSee.hpp"
 #include "../../../exceptions/InvalidArguments.hpp"
 #include "../../../Handler/Handler.hpp"
@@ -11,8 +12,9 @@
 
 namespace tppoo {
 
-    int CmdSee::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdSee::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs != 2) throw InvalidArguments();
+        std::stringstream ss;
         int x = toNumber(args[0]) % Simulation::getNC();
         int y = toNumber(args[1]) % Simulation::getNL();
         for (int i = 0; i < Handler::instance->getSimulation()->getNEntities(); i++) {
@@ -20,91 +22,96 @@ namespace tppoo {
             if (e->getX() == x && e->getY() == y && !e->isDead()) {
                 if (e->isAnimal()) {
                     Animal *a = (Animal *) e;
-                    Handler::instance->commandWindow << "Id: " << i << ", Especie: ";
+                    ss << "Id: " << i << ", Especie: ";
                     if (e->isCoelho()) {
-                        Handler::instance->commandWindow << "Coelho";
+                        ss << "Coelho";
                     } else if (e->isCanguru()) {
-                        Handler::instance->commandWindow << "Canguru";
+                        ss << "Canguru";
                     } else if (e->isLobo()) {
-                        Handler::instance->commandWindow << "Lobo";
+                        ss << "Lobo";
                     } else if (e->isOvelha()) {
-                        Handler::instance->commandWindow << "Ovelha";
+                        ss << "Ovelha";
                     } else {
-                        Handler::instance->commandWindow << "Animal Mistério";
+                        ss << "Animal Mistério";
                     }
-                    Handler::instance->commandWindow << ", Vida: " << a->getLife() << ", Peso: " << a->getWeight() <<
-                            ", Fome: " << a->getHunger() << ", Lifetime: " << e->getLifetime() << "\n";
+                    ss << ", Vida: " << a->getLife() << ", Peso: " << a->getWeight() <<
+                            ", Fome: " << a->getHunger() << ", Lifetime: " << e->getLifetime();
                 } else {
                     Food *f = (Food *) e;
-                    Handler::instance->commandWindow << "Id: " << i << ", Tipo: ";
+                    ss << "Id: " << i << ", Tipo: ";
                     if (e->isCenoura()) {
-                        Handler::instance->commandWindow << "Cenoura";
+                        ss << "Cenoura";
                     } else if (e->isRelva()) {
-                        Handler::instance->commandWindow << "Relva";
+                        ss << "Relva";
                     } else if (e->isCorpo()) {
-                        Handler::instance->commandWindow << "Corpo";
+                        ss << "Corpo";
                     } else if (e->isBife()) {
-                        Handler::instance->commandWindow << "Bife";
+                        ss << "Bife";
                     } else {
-                        Handler::instance->commandWindow << "Alimento Mistério";
+                        ss << "Alimento Mistério";
                     }
-                    Handler::instance->commandWindow << ", Nutrientes: " << f->getNut() << ", Toxicidade: " << f->getTox() <<
-                            ", Lifetime: " << e->getLifetime() << "\n";
+                    ss << ", Nutrientes: " << f->getNut() << ", Toxicidade: " << f->getTox() <<
+                            ", Lifetime: " << e->getLifetime();
                 }
+                v.push_back(ss.str());
+                ss.str(std::string());
             }
         }
         return 0;
     }
 
-    int CmdInfo::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdInfo::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs != 1) throw InvalidArguments();
+        std::stringstream ss;
         int n = toNumber(args[0]);
         Entity * e = Handler::instance->getSimulation()->getEntity(n);
         if (e->isDead()) throw EntityAlreadyDead();
         if (e->isAnimal()) {
             Animal *a = (Animal *) e;
-            Handler::instance->commandWindow << "Id: " << n << ", Especie: ";
+            ss << "Id: " << n << ", Especie: ";
             if (e->isCoelho()) {
-                Handler::instance->commandWindow << "Coelho";
+                ss << "Coelho";
             } else if (e->isCanguru()) {
-                Handler::instance->commandWindow << "Canguru";
+                ss << "Canguru";
             } else if (e->isLobo()) {
-                Handler::instance->commandWindow << "Lobo";
+                ss << "Lobo";
             } else if (e->isOvelha()) {
-                Handler::instance->commandWindow << "Ovelha";
+                ss << "Ovelha";
             } else {
-                Handler::instance->commandWindow << "Animal Mistério";
+                ss << "Animal Mistério";
             }
-            Handler::instance->commandWindow << ", Vida: " << a->getLife() << ", Peso: " << a->getWeight() <<
+            ss << ", Vida: " << a->getLife() << ", Peso: " << a->getWeight() <<
                       ", Fome: " << a->getHunger() << ", Lifetime: " << e->getLifetime()
-                      << ", X: " << e->getX() << ", Y: " << e->getY() << "\n";
+                      << ", X: " << e->getX() << ", Y: " << e->getY();
         } else {
             Food *f = (Food *) e;
-            Handler::instance->commandWindow << "Id: " << n << ", Tipo: ";
+            ss << "Id: " << n << ", Tipo: ";
             if (e->isCenoura()) {
-                Handler::instance->commandWindow << "Cenoura";
+                ss << "Cenoura";
             } else if (e->isRelva()) {
-                Handler::instance->commandWindow << "Relva";
+                ss << "Relva";
             } else if (e->isCorpo()) {
-                Handler::instance->commandWindow << "Corpo";
+                ss << "Corpo";
             } else if (e->isBife()) {
-                Handler::instance->commandWindow << "Bife";
+                ss << "Bife";
             } else {
-                Handler::instance->commandWindow << "Alimento Mistério";
+                ss << "Alimento Mistério";
             }
-            Handler::instance->commandWindow << ", Nutrientes: " << f->getNut() << ", Toxicidade: " << f->getTox() <<
+            ss << ", Nutrientes: " << f->getNut() << ", Toxicidade: " << f->getTox() <<
                       ", Lifetime: " << e->getLifetime()<< ", X: " << e->getX() << ", Y: " <<
-                      e->getY() << "\n";
+                      e->getY();
         }
+        v.push_back(ss.str());
+        ss.str(std::string());
         return 0;
     }
 
-    int CmdEmpty::execute(std::string cmd, std::string *args, int nargs) {
+    int CmdEmpty::execute(std::string cmd, std::string *args, int nargs, std::vector<std::string> &v) {
         if (nargs != 2) throw InvalidArguments();
         int x = toNumber(args[0]);
         int y = toNumber(args[1]);
-        std::vector<Entity *> v = Handler::instance->getSimulation()->getEntitiesInside(x, y, x, y);
-        for (Entity * e : v) {
+        std::vector<Entity *> ve = Handler::instance->getSimulation()->getEntitiesInside(x, y, x, y);
+        for (Entity * e : ve) {
             if (!e->isDead()) e->kill();
         }
         return 2;
