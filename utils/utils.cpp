@@ -80,6 +80,10 @@ namespace tppoo {
         return isBetweenOrEquals(x, x1, x2) && isBetweenOrEquals(y, y1, y2);
     }
 
+    bool contains(std::string a, std::string b) {
+        return a.find(b) != std::string::npos;
+    }
+
     Random::Random() {
         generator = new std::default_random_engine(getCurrentTime());
     }

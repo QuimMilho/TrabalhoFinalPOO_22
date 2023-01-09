@@ -17,6 +17,7 @@ namespace tppoo {
     bool isBetweenOrEquals(int n, int a, int b);
     bool isBetween(int x, int y, int x1, int y1, int x2, int y2);
     bool isBetweenOrEquals(int x, int y, int x1, int y1, int x2, int y2);
+    bool contains(std::string a, std::string b);
 
     class Random {
     private:
