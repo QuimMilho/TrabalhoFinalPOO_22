@@ -6,11 +6,14 @@
 namespace tppoo {
 
     class Ovelha : public Animal {
+    private:
+        int maxLifetime;
     public:
         Ovelha(int x, int y, int weight);
         ~Ovelha() override;
         int tick() override;
         bool isOvelha() const override;
+        void kill() override;
     };
 
 }

@@ -16,6 +16,7 @@ namespace tppoo {
             maxLifetime = Handler::instance->getSimulation()->getVar("VCoelho");
         } catch (VarNotFound& e) {
             e.what();
+            maxLifetime = 30;
         }
     }
 
@@ -30,10 +31,10 @@ namespace tppoo {
         std::vector<Entity *> v;
 
         setHunger(getHunger() + 1);
-        if (getHunger() > 10) {
-            setLife(getLife() - 1);
-        } else if (getHunger() > 20) {
+        if (getHunger() > 20) {
             setLife(getLife() - 2);
+        } else if (getHunger() > 10) {
+            setLife(getLife() - 1);
         }
         if (isDead()) return 1;
 
@@ -49,14 +50,14 @@ namespace tppoo {
             k = Handler::instance->random(1, 2);
         }
 
-        v = Handler::instance->getSimulation()->getEntitiesInside(getX() - getPerc(),
-                                                                  getY() - getPerc(),getX() + getPerc(), getY() + getPerc());
+        v = Handler::instance->getSimulation()->getEntitiesInside(
+                getX() - getPerc(), getY() - getPerc(),getX() + getPerc(), getY() + getPerc());
         int goalX = -1, goalY = -1, p = 0, maxDis = INT_MAX;
         for (Entity * e : v) {
             if (e->isFood() && p != 2) {
                 Food * f = (Food *) e;
-                k = maxSteps;
                 if (contains(f->getSmells(), "verdura")) {
+                    k = maxSteps;
                     int dis = abs(getX() - f->getY()) + abs(getY() - f->getY());
                     if (dis < maxDis) {
                         p = 1;
@@ -66,9 +67,9 @@ namespace tppoo {
                     }
                 }
             } else {
-                k = maxSteps;
                 Animal * a = (Animal *) e;
                 if (a->getWeight() > 10) {
+                    k = maxSteps;
                     if (p != 2) {
                         p = 2;
                         maxDis = 0;

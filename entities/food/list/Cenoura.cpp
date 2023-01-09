@@ -7,10 +7,10 @@ namespace tppoo {
     Cenoura::~Cenoura() = default;
 
     int Cenoura::tick() {
-        if (getLifetime() % 10 == 0 && getLifetime() != 0) {
+        addLifetime();
+        if (getLifetime() % 10 == 0 && getTox() < 3) {
             setTox(getTox() + 1);
         }
-        addLifetime();
         return 0;
     }
 

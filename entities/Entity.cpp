@@ -7,6 +7,7 @@
 #include "animal/list/Ovelha.hpp"
 #include "animal/list/Lobo.hpp"
 #include "animal/list/Canguru.hpp"
+#include "../exceptions/OutOfBounds.hpp"
 
 namespace tppoo {
 
@@ -51,6 +52,10 @@ namespace tppoo {
 
     void Entity::kill() {
         if (dead) throw EntityAlreadyDead();
+        dead = true;
+    }
+
+    void Entity::setDead() {
         dead = true;
     }
 
@@ -108,28 +113,35 @@ namespace tppoo {
 
     bool Entity::createNew(int newX, int newY) {
         if (isRelva()) {
-            Handler::instance->getSimulation()->summon(new Relva(x, y));
+            try {
+                Handler::instance->getSimulation()->summon(new Relva(newX, newY));
+            } catch (OutOfBounds &e) {
+                e.what();
+                return false;
+            }
             return true;
         } else if (isCoelho()) {
             int weight = Handler::instance->random(1, 4);
-            Handler::instance->getSimulation()->summon(new Coelho(x, y, weight));
+            Handler::instance->getSimulation()->summon(new Coelho(newX, newY, weight));
             return true;
         } else if (isOvelha()) {
             int weight = Handler::instance->random(4, 8);
-            Handler::instance->getSimulation()->summon(new Ovelha(x, y, weight));
+            Ovelha * o = new Ovelha(newX, newY, weight);
+            Animal * a = (Animal *) this;
+            o->setLife(a->getLife());
+            Handler::instance->getSimulation()->summon(o);
             return true;
         } else if (isLobo()) {
-            Handler::instance->getSimulation()->summon(new Lobo(x, y));
+            Handler::instance->getSimulation()->summon(new Lobo(newX, newY));
             return true;
         } else if (isCanguru()) {
-            Handler::instance->getSimulation()->summon(new Canguru(x, y, (Canguru *) this));
+            Handler::instance->getSimulation()->summon(new Canguru(newX, newY, (Canguru *) this));
             return true;
         }
         return false;
     }
 
     bool Entity::reproduce(int radius) {
-        Handler::instance->historyWindow << "Done!";
         int relX = Handler::instance->random(radius), newX;
         int relY = Handler::instance->random(radius - relX), newY;
         if (Handler::instance->random(2) == 0) {
