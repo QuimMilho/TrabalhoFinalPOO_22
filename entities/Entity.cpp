@@ -1,6 +1,12 @@
 #include "Entity.hpp"
 #include "../exceptions/EntityAlreadyDead.hpp"
 #include "../simulation/Simulation.hpp"
+#include "../handler/Handler.hpp"
+#include "food/list/Relva.hpp"
+#include "animal/list/Coelho.hpp"
+#include "animal/list/Ovelha.hpp"
+#include "animal/list/Lobo.hpp"
+#include "animal/list/Canguru.hpp"
 
 namespace tppoo {
 
@@ -98,6 +104,61 @@ namespace tppoo {
 
     bool Entity::isRelva() const {
         return false;
+    }
+
+    bool Entity::createNew(int newX, int newY) {
+        if (isRelva()) {
+            Handler::instance->getSimulation()->summon(new Relva(x, y));
+            return true;
+        } else if (isCoelho()) {
+            int weight = Handler::instance->random(1, 4);
+            Handler::instance->getSimulation()->summon(new Coelho(x, y, weight));
+            return true;
+        } else if (isOvelha()) {
+            int weight = Handler::instance->random(4, 8);
+            Handler::instance->getSimulation()->summon(new Ovelha(x, y, weight));
+            return true;
+        } else if (isLobo()) {
+            Handler::instance->getSimulation()->summon(new Lobo(x, y));
+            return true;
+        } else if (isCanguru()) {
+            Handler::instance->getSimulation()->summon(new Canguru(x, y, (Canguru *) this));
+            return true;
+        }
+        return false;
+    }
+
+    bool Entity::reproduce(int radius) {
+        Handler::instance->historyWindow << "Done!";
+        int relX = Handler::instance->random(radius), newX;
+        int relY = Handler::instance->random(radius - relX), newY;
+        if (Handler::instance->random(2) == 0) {
+            newX = x + relX;
+        } else {
+            newX = x - relX;
+        }
+        if (Handler::instance->random(2) == 0) {
+            newY = y + relY;
+        } else {
+            newY = y - relY;
+        }
+        if (isFood()) {
+            if (Handler::instance->getSimulation()->alreadyHasFood(newX, newY)) {
+                return false;
+            }
+        }
+        return createNew(newX, newY);
+    }
+
+    bool Entity::reproduce(int radiusX, int radiusY) {
+        int newX = x + Handler::instance->random(radiusX * 2 + 1) - radiusX;
+        int newY = y + Handler::instance->random(radiusY * 2 + 1) - radiusY;
+        if (isFood()) {
+            if (Handler::instance->getSimulation()->alreadyHasFood(newX, newY)) {
+                return false;
+            }
+        }
+        return createNew(newX, newY);
     }
 
 }

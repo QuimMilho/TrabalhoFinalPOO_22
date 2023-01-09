@@ -8,8 +8,11 @@ namespace tppoo {
         char representative;
         int x, y, lifetime;
         bool dead;
+        bool createNew(int newX, int newY);
     protected:
         Entity(char c, int x, int y);
+        bool reproduce(int radiusX, int radiusY);
+        bool reproduce(int radius);
     public:
         void addLifetime();
         char getChar() const;
